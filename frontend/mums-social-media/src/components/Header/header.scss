@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  padding: 3.2rem;
+  grid-area: Header;
+  align-items: center;
+
+  .logo-container {
+    width: 7.3rem;
+    height: 7.3rem;
+    margin-right: 3.2rem;
+    background-color: blue;
+    .logo-img {
+      width: 100%;
+      background-size: cover;
+    }
+  }
+}

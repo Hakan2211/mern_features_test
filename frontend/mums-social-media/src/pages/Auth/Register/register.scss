@@ -1,0 +1,9 @@
+.register {
+  grid-column: 3 / 7;
+  grid-row: 2 / 4;
+  background-color: rgb(215, 212, 212);
+
+  .error-required-field {
+    color: red;
+  }
+}
