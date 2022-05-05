@@ -1,30 +1,19 @@
 import React, { useEffect } from "react";
+import "./updatePost.scss";
+import SelectDropdown from "../../../../components/FormComponents/SelectDropdown/Select";
+import Dropzone from "../../../../components/FormComponents/Dropzone/Dropzone";
 import { useForm, Controller } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { fetchCategoriesAction } from "../../../redux/slices/categories/categoriesSlices";
-import { createPostAction } from "../../../redux/slices/posts/postSlices";
-import "./createPost.scss";
-import SelectDropdown from "../../../components/FormComponents/SelectDropdown/Select";
-import Dropzone from "../../../components/FormComponents/Dropzone/Dropzone";
-import { useNavigate } from "react-router-dom";
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-const CreatePost = () => {
-  const dispatch = useDispatch();
+const UpdatePost = () => {
   const category = useSelector((state) => state.categories);
-  const post = useSelector((state) => state.posts);
-  const { isCreated, loading, appError, serverError } = post;
-  const { categoryList } = category;
-  const navigate = useNavigate();
+  const { categoryList, loading, appError, serverError } = category;
 
-  useEffect(() => {
-    dispatch(fetchCategoriesAction());
-    if (isCreated) {
-      navigate("/posts");
-    }
-  }, [dispatch, isCreated]);
+  const allCategories = categoryList?.map((categoryItem) => {
+    return categoryItem.title;
+  });
+
+  const post = useSelector((state) => state.posts);
 
   const {
     register,
@@ -41,12 +30,7 @@ const CreatePost = () => {
     shouldUnregister: true,
   });
 
-  //----------------------------------------------------------------
-  // Fetching Categories from Redux Store
-  //----------------------------------------------------------------
-  const allCategories = categoryList?.map((categoryItem) => {
-    return categoryItem.title;
-  });
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
     (async () => {
@@ -56,17 +40,8 @@ const CreatePost = () => {
     })();
   }, []);
 
-  const values = watch();
-
   const onSubmit = (data) => {
-    const payload = {
-      category: data?.categories?.value,
-      title: data?.title,
-      description: data?.description,
-      image: data?.image,
-    };
-
-    dispatch(createPostAction(payload));
+    console.log(data);
   };
 
   return (
@@ -152,4 +127,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default UpdatePost;

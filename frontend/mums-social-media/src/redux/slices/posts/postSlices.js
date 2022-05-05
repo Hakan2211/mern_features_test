@@ -46,6 +46,42 @@ export const createPostAction = createAsyncThunk(
   }
 );
 //------------------------------
+// Update Post
+//------------------------------
+export const updatePostAction = createAsyncThunk(
+  "posts/update",
+  async (post, { rejectWithValue, getState, dispatch }) => {
+    const users = getState()?.users;
+    const { userAuth } = users;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+
+    try {
+      const formData = new FormData();
+      formData.append("title", post?.title);
+      formData.append("description", post?.description);
+      formData.append("category", post?.category);
+      formData.append("image", post?.image);
+
+      const { data } = await baseAPI.patch(
+        `posts/${post?.id}`,
+        formData,
+        config
+      );
+
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response.data);
+    }
+  }
+);
+//------------------------------
 // Fetch all Posts
 //------------------------------
 export const fetchPostsAction = createAsyncThunk(
@@ -161,6 +197,24 @@ const postsSlices = createSlice({
       state.isCreated = false;
     });
     builder.addCase(createPostAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action.payload.message;
+      state.serverError = action?.error?.message;
+    });
+    //------------------------------
+    // Update post
+    //------------------------------
+    builder.addCase(updatePostAction.pending, (state, action) => {
+      state.loading = true;
+    });
+
+    builder.addCase(updatePostAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.postUpdated = action?.payload;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+    builder.addCase(updatePostAction.rejected, (state, action) => {
       state.loading = false;
       state.appError = action.payload.message;
       state.serverError = action?.error?.message;

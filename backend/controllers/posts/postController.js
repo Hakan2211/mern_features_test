@@ -11,7 +11,6 @@ import { StatusCodes } from "http-status-codes";
 //----------------------------------------------------------------
 const createPost = async (req, res) => {
   const { _id } = req.user;
-  console.log("check", req.file);
 
   if (!req.file) {
     return res.status(400).json({ message: "Image is required" });
@@ -68,7 +67,10 @@ const fetchPost = async (req, res) => {
     const post = await Post.findById(id)
       .populate("user")
       .populate("likes")
-      .populate("dislikes");
+      .populate("disLikes");
+    // .populate("user")
+    // .populate("likes")
+    // .populate("dislikes");
 
     //Number of Views
     await Post.findByIdAndUpdate(
