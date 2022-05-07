@@ -35,7 +35,9 @@ const UpdateCategory = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    dispatch(updateCategoryAction({ title: data.title, id }));
+    dispatch(
+      updateCategoryAction({ title: data.title, image: data.image, id })
+    );
   };
   return (
     <div className="update-category">

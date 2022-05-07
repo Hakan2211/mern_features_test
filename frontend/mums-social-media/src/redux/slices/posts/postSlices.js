@@ -9,6 +9,8 @@ import baseAPI from "../../../apis/baseAPI";
 // Reset Post
 //------------------------------
 const resetPost = createAction("post/reset");
+const resetPostEdit = createAction("postEdit/reset");
+const resetPostDelete = createAction("postDelete/reset");
 
 //------------------------------
 // Create Post
@@ -60,17 +62,37 @@ export const updatePostAction = createAsyncThunk(
     };
 
     try {
-      const formData = new FormData();
-      formData.append("title", post?.title);
-      formData.append("description", post?.description);
-      formData.append("category", post?.category);
-      formData.append("image", post?.image);
+      const { data } = await baseAPI.patch(`posts/${post?.id}`, post, config);
 
-      const { data } = await baseAPI.patch(
-        `posts/${post?.id}`,
-        formData,
-        config
-      );
+      dispatch(resetPostEdit());
+
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response.data);
+    }
+  }
+);
+//------------------------------
+// Delete Post
+//------------------------------
+export const deletePostAction = createAsyncThunk(
+  "posts/delete",
+  async (postId, { rejectWithValue, getState, dispatch }) => {
+    const users = getState()?.users;
+    const { userAuth } = users;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+
+    try {
+      const { data } = await baseAPI.delete(`posts/${postId}`, config);
+
+      dispatch(resetPostDelete());
 
       return data;
     } catch (error) {
@@ -207,14 +229,39 @@ const postsSlices = createSlice({
     builder.addCase(updatePostAction.pending, (state, action) => {
       state.loading = true;
     });
+    builder.addCase(resetPostEdit, (state, action) => {
+      state.isUpdated = true;
+    });
 
     builder.addCase(updatePostAction.fulfilled, (state, action) => {
       state.loading = false;
       state.postUpdated = action?.payload;
       state.appError = undefined;
       state.serverError = undefined;
+      state.isUpdated = false;
     });
     builder.addCase(updatePostAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action.payload.message;
+      state.serverError = action?.error?.message;
+    });
+    //------------------------------
+    // Delete post
+    //------------------------------
+    builder.addCase(deletePostAction.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(resetPostDelete, (state, action) => {
+      state.isDeleted = true;
+    });
+
+    builder.addCase(deletePostAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.appError = undefined;
+      state.serverError = undefined;
+      state.isDeleted = false;
+    });
+    builder.addCase(deletePostAction.rejected, (state, action) => {
       state.loading = false;
       state.appError = action.payload.message;
       state.serverError = action?.error?.message;

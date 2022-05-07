@@ -51,7 +51,7 @@ const createPost = async (req, res) => {
 
 const fetchPosts = async (req, res) => {
   try {
-    const posts = await Post.find({}).populate("user");
+    const posts = await Post.find({}).populate("user").populate("comments");
     res.status(StatusCodes.OK).json(posts);
   } catch (error) {}
 };
@@ -67,7 +67,8 @@ const fetchPost = async (req, res) => {
     const post = await Post.findById(id)
       .populate("user")
       .populate("likes")
-      .populate("disLikes");
+      .populate("disLikes")
+      .populate("comments");
     // .populate("user")
     // .populate("likes")
     // .populate("dislikes");

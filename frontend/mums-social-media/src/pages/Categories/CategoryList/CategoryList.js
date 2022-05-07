@@ -53,7 +53,7 @@ const CategoryList = () => {
             <button
               onClick={() => dispatch(deleteCategoryAction(category._id))}
             >
-              {MdDelete} Delete
+              <MdDelete /> Delete
             </button>
           </>
         ))

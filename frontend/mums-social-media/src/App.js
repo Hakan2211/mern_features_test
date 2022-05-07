@@ -33,6 +33,10 @@ import CreatePost from "./pages/Posts/createPost/createPost";
 import PostList from "./pages/Posts/PostList/PostList";
 import PostDetail from "./pages/Posts/PostList/PostDetail/PostDetail";
 import UpdatePost from "./pages/Posts/PostList/UpdatePost/UpdatePost";
+//------------------------------
+//Comments
+//------------------------------
+import UpdateComment from "./components/Comments/UpdateComment";
 
 const App = () => {
   const user = useSelector((state) => state.users);
@@ -56,6 +60,7 @@ const App = () => {
           <Route path="/add-category" element={<AddCategory />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/update-post/:id" element={<UpdatePost />} />
+          <Route path="/update-comment/:id" element={<UpdateComment />} />
         </Route>
         <Route path="/posts" element={<PostList />} />
         <Route path="/posts/:id" element={<PostDetail />} />

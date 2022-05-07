@@ -3,6 +3,7 @@ import { ImHeart, ImBubble } from "react-icons/im";
 import { AiOutlineEye } from "react-icons/ai";
 import "./postList.scss";
 import { HiOutlineArrowRight } from "react-icons/hi";
+
 import {
   fetchPostsAction,
   toggleLikePostAction,

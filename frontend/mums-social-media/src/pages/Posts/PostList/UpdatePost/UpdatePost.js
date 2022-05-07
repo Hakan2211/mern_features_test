@@ -1,11 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./updatePost.scss";
 import SelectDropdown from "../../../../components/FormComponents/SelectDropdown/Select";
 import Dropzone from "../../../../components/FormComponents/Dropzone/Dropzone";
 import { useForm, Controller } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCategoriesAction } from "../../../../redux/slices/categories/categoriesSlices";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  fetchPostDetailAction,
+  updatePostAction,
+} from "../../../../redux/slices/posts/postSlices";
 
 const UpdatePost = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const dispatch = useDispatch();
   const category = useSelector((state) => state.categories);
   const { categoryList, loading, appError, serverError } = category;
 
@@ -14,6 +23,28 @@ const UpdatePost = () => {
   });
 
   const post = useSelector((state) => state.posts);
+  const { postDetail } = post;
+
+  const postUpdate = useSelector((state) => state.posts);
+  const {
+    isUpdated,
+    loading: updateLoading,
+    appError: updateAppError,
+    serverError: updateServerError,
+  } = postUpdate;
+
+  const [defaultValue, setDefaultValue] = useState("");
+
+  useEffect(() => {
+    dispatch(fetchCategoriesAction());
+    dispatch(fetchPostDetailAction(id));
+
+    if (post) {
+      setDefaultValue(postDetail?.title);
+    }
+  }, [dispatch]);
+
+  console.log(id);
 
   const {
     register,
@@ -24,7 +55,10 @@ const UpdatePost = () => {
     reset,
     formState: { errors },
   } = useForm({
-    defaultValues: { title: "", description: "", image: null, categories: [] },
+    defaultValues: {
+      title: postDetail?.title,
+      description: postDetail?.description,
+    },
     mode: "onBlur",
     reValidateMode: "onChange",
     shouldUnregister: true,
@@ -41,12 +75,23 @@ const UpdatePost = () => {
   }, []);
 
   const onSubmit = (data) => {
-    console.log(data);
+    const payload = {
+      category: data?.categories?.value,
+      title: data?.title,
+      description: data?.description,
+      image: data?.image,
+      id,
+    };
+    dispatch(updatePostAction(payload));
   };
+
+  if (isUpdated) {
+    navigate("/posts");
+  }
 
   return (
     <div className="create-post">
-      <h1>Create a post</h1>
+      <h1>Update your post</h1>
       <form className="create-post__form" onSubmit={handleSubmit(onSubmit)}>
         <div className="text__container">
           <label>title</label>
@@ -57,6 +102,7 @@ const UpdatePost = () => {
               required: "Please enter a title.",
             })}
             type="text"
+            defaultValue={defaultValue}
           />
         </div>
         {errors.title && (
@@ -107,19 +153,19 @@ const UpdatePost = () => {
           }}
         />
 
-        {loading ? (
+        {updateLoading ? (
           <button disabled className="create-post__button">
             Loading...
           </button>
         ) : (
           <button type="submit" className="create-post__button">
-            Create Post
+            Update Post
           </button>
         )}
 
-        {appError || serverError ? (
+        {updateAppError || updateServerError ? (
           <p>
-            {serverError} - {appError}
+            {updateServerError} - {updateAppError}
           </p>
         ) : null}
       </form>

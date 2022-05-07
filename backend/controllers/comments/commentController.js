@@ -56,7 +56,6 @@ const updateComment = async (req, res) => {
     const comment = await Comment.findByIdAndUpdate(
       id,
       {
-        post: req.body.postId,
         user: req.user,
         description: req.body?.description,
       },
