@@ -38,6 +38,11 @@ import UpdatePost from "./pages/Posts/PostList/UpdatePost/UpdatePost";
 //------------------------------
 import UpdateComment from "./components/Comments/UpdateComment";
 
+//------------------------------
+//Users
+//------------------------------
+import Profile from "./pages/Users/Profile/Profile";
+
 const App = () => {
   const user = useSelector((state) => state.users);
   const { userAuth } = user;
@@ -52,6 +57,14 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        {/* <Route
+          element={
+            <ProtectedRoutes isAllowed={!!userAuth} redirectPath={"/profile"} />
+          }
+        >
+         
+        </Route> */}
         <Route
           element={
             <ProtectedRoutes isAllowed={!!userAuth} redirectPath={"/"} />
@@ -59,6 +72,7 @@ const App = () => {
         >
           <Route path="/add-category" element={<AddCategory />} />
           <Route path="/create-post" element={<CreatePost />} />
+
           <Route path="/update-post/:id" element={<UpdatePost />} />
           <Route path="/update-comment/:id" element={<UpdateComment />} />
         </Route>

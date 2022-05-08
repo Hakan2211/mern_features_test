@@ -19,15 +19,13 @@ const PostDetail = () => {
   const post = useSelector((state) => state.posts);
   const { postDetail, loading, appError, serverError, isDeleted } = post;
 
-  const user = useSelector((state) => state.users);
-  const {
-    userAuth: { _id },
-  } = user;
+  const user = useSelector((state) => state?.users);
+  const { userAuth } = user;
 
   const comment = useSelector((state) => state.comments);
   const { commentCreated, commentDeleted } = comment;
 
-  const isCreatedBy = postDetail?.user?._id === _id;
+  const isCreatedBy = postDetail?.user?._id === userAuth?._id;
   console.log(isCreatedBy);
   useEffect(() => {
     dispatch(fetchPostDetailAction(id));
@@ -86,7 +84,8 @@ const PostDetail = () => {
             </div>
           </div>
           <div className="post__detail__comment">
-            <AddComment postId={id} />
+            {userAuth ? <AddComment postId={id} /> : null}
+
             <CommentList comments={postDetail?.comments} />
           </div>
         </div>

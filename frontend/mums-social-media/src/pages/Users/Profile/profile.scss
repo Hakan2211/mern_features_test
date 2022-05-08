@@ -1,0 +1,32 @@
+.profile-page__container {
+  width: 80vw;
+  height: 100vw;
+  background-color: blue;
+  color: white;
+
+  .profile-page__header {
+    display: flex;
+    justify-content: space-evenly;
+    &__info {
+      display: flex;
+      flex-direction: column;
+      &__picture {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 10rem;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 10rem;
+        }
+      }
+    }
+  }
+  .profile-page__header__options {
+    width: 20rem;
+    &__list__items {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
