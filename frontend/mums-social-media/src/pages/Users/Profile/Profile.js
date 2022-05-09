@@ -3,8 +3,7 @@ import "./profile.scss";
 import { userProfileAction } from "../../../redux/slices/users/usersSlices";
 import { useDispatch, useSelector } from "react-redux";
 import DateFormmater from "../../../utils/DateFormatter";
-
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Profile = () => {
   const { id } = useParams();
@@ -54,7 +53,9 @@ const Profile = () => {
                 <button>Send Message</button>
               </li>
               <li>
-                <button>Upload Photo</button>
+                <Link to={`/upload-photo/${profile?._id}`}>
+                  <button>Upload Photo</button>
+                </Link>
               </li>
             </ul>
           </div>

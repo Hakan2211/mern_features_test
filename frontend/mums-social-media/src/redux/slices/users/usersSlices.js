@@ -108,6 +108,41 @@ export const logoutAction = createAsyncThunk(
   }
 );
 
+//------------------------------
+// Upload Profile Photo
+//------------------------------
+export const uploadProfilePhotoAction = createAsyncThunk(
+  "users/uploadProfilePhoto",
+  async (image, { rejectWithValue, getState, dispatch }) => {
+    const users = getState()?.users;
+    const { userAuth } = users;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+
+    try {
+      const formData = new FormData();
+
+      formData.append("image", image?.image);
+
+      const { data } = await baseAPI.patch(
+        "users/profilephoto-upload",
+        formData,
+        config
+      );
+
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response.data);
+    }
+  }
+);
+
 //----------------------------------------------------------------
 // Get User from Local Storage and place into store
 //----------------------------------------------------------------
@@ -187,6 +222,26 @@ const usersSlices = createSlice({
       state.serverError = undefined;
     });
     builder.addCase(userProfileAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action?.payload.message;
+      state.serverError = action?.error.message;
+    });
+    //--------------------------
+    // Upload Profile Photo
+    //--------------------------
+    builder.addCase(uploadProfilePhotoAction.pending, (state, action) => {
+      state.loading = true;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+
+    builder.addCase(uploadProfilePhotoAction.fulfilled, (state, action) => {
+      state.profilePhoto = action?.payload;
+      state.loading = false;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+    builder.addCase(uploadProfilePhotoAction.rejected, (state, action) => {
       state.loading = false;
       state.appError = action?.payload.message;
       state.serverError = action?.error.message;
