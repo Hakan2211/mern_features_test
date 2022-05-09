@@ -1,23 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./profile.scss";
+import { userProfileAction } from "../../../redux/slices/users/usersSlices";
+import { useDispatch, useSelector } from "react-redux";
+import DateFormmater from "../../../utils/DateFormatter";
+
+import { useNavigate, useParams } from "react-router-dom";
+
 const Profile = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.users);
+  const { profile, loading, appError, serverError } = user;
+
+  useEffect(() => {
+    dispatch(userProfileAction(id));
+  }, [dispatch, id]);
   return (
     <div className="profile-page__container">
       <div className="profile-page__header">
         <div className="profile-page__header__info">
           <div className="profile-page__header__info__picture">
-            <img
-              src="https://cdn.pixabay.com/photo/2021/06/15/16/11/man-6339003_960_720.jpg"
-              alt="profile_image"
-            />
+            <img src={profile?.profilePicture} alt="profile_image" />
           </div>
-          <div className="profile-page__header__info__name">John</div>
+          <div className="profile-page__header__info__name">
+            {profile?.name}
+          </div>
           <div className="profile-page__header__info__joined">
-            Joined: 24 May 2022
+            Joined: <DateFormmater date={profile?.createdAt} />
           </div>
           <div className="profile-page__header__info__followers">
-            Followers:510
+            Followers:{profile?.followers.length}
           </div>
+          <div className="profile-page__header__info__following">
+            Following:{profile?.following.length}
+          </div>
+          {profile?.isAccountVerified ? (
+            <span>Verified</span>
+          ) : (
+            <span>Unverified</span>
+          )}
         </div>
         <div className="profile-page__header__options">
           <div className="profile-page__header__options__list">
@@ -31,12 +53,31 @@ const Profile = () => {
               <li>
                 <button>Send Message</button>
               </li>
+              <li>
+                <button>Upload Photo</button>
+              </li>
             </ul>
           </div>
         </div>
       </div>
       <div className="profile-page__main">
-        <div className="profile-page__main__posts">Posts</div>
+        <div className="profile-page__main__posts">
+          <h1>
+            {profile?.name}{" "}
+            {profile?.posts.length === 1
+              ? "Post"
+              : profile?.posts.length === 0
+              ? "No Post was found"
+              : "Posts"}
+          </h1>
+          {profile?.posts.map((post) => {
+            return (
+              <div className="profile-post__image__container">
+                <img src={post?.image} alt="" />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

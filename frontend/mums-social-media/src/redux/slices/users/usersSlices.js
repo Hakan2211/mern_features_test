@@ -66,7 +66,7 @@ export const loginUserAction = createAsyncThunk(
 //----------------------------------------------------------------
 
 export const userProfileAction = createAsyncThunk(
-  "user/profilee",
+  "user/profile",
   async (id, { rejectWithValue, getState, dispatch }) => {
     const users = getState()?.users;
     const { userAuth } = users;
@@ -76,7 +76,7 @@ export const userProfileAction = createAsyncThunk(
       },
     };
     try {
-      const { data } = await baseAPI.get(`/profile/${id}`, config);
+      const { data } = await baseAPI.get(`/users/profile/${id}`, config);
       //----------------------------------------------------
       //Dispatch Action to redirect after creating Category
       //----------------------------------------------------

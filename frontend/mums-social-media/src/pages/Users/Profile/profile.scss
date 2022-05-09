@@ -23,10 +23,29 @@
     }
   }
   .profile-page__header__options {
-    width: 20rem;
+    width: 30rem;
     &__list__items {
       display: flex;
       justify-content: space-between;
     }
+  }
+}
+
+.profile-page__main {
+  width: 100vw;
+  height: 400rem;
+  &__posts {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.profile-post__image__container {
+  width: 40rem;
+  height: 80rem;
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
