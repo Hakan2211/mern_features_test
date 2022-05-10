@@ -22,7 +22,10 @@ import {
   profilePhotoResize,
 } from "../middlewares/uploads/photoUpload.js";
 
-router.route("/").get(authenticateUser, getAllUsers);
+router
+  .route("/")
+  .get(authenticateUser, getAllUsers)
+  .patch(authenticateUser, updateUser);
 router.route("/password").patch(authenticateUser, updateUserPassword);
 router
   .route("/profilephoto-upload")
@@ -39,7 +42,7 @@ router.route("/block-user/:id").patch(authenticateUser, blockUser);
 router.route("/unblock-user/:id").patch(authenticateUser, unblockUser);
 
 router.route("/profile/:id").get(authenticateUser, userProfile);
-router.route("/:id").patch(authenticateUser, updateUser).get(getSingleUser);
+router.route("/:id").get(getSingleUser);
 router.route("/delete/:id").delete(deleteUser);
 
 export default router;

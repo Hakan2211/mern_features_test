@@ -6,6 +6,7 @@ import baseAPI from "../../../apis/baseAPI";
 //--------------------------
 const resetLogin = createAction("resetLogin/reset");
 const resetRegister = createAction("resetRegister/reset");
+const resetUpdate = createAction("resetUpdate/reset");
 //----------------------------------------------------------------
 // Register Action - Thunk
 //----------------------------------------------------------------
@@ -66,7 +67,7 @@ export const loginUserAction = createAsyncThunk(
 //----------------------------------------------------------------
 
 export const userProfileAction = createAsyncThunk(
-  "user/profile",
+  "users/profile",
   async (id, { rejectWithValue, getState, dispatch }) => {
     const users = getState()?.users;
     const { userAuth } = users;
@@ -77,6 +78,68 @@ export const userProfileAction = createAsyncThunk(
     };
     try {
       const { data } = await baseAPI.get(`/users/profile/${id}`, config);
+      //----------------------------------------------------
+      //Dispatch Action to redirect after creating Category
+      //----------------------------------------------------
+
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response.data);
+    }
+  }
+);
+
+//----------------------------------------------------------------
+// Update User Profile Action - Thunk
+//----------------------------------------------------------------
+
+export const updateUserAction = createAsyncThunk(
+  "users/update",
+  async (user, { rejectWithValue, getState, dispatch }) => {
+    const users = getState()?.users;
+    const { userAuth } = users;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    try {
+      const { data } = await baseAPI.patch(
+        "/users",
+        { name: user?.name, email: user?.email, bio: user?.bio },
+        config
+      );
+
+      dispatch(resetUpdate());
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response.data);
+    }
+  }
+);
+
+//----------------------------------------------------------------
+// fetch single user - Thunk
+//----------------------------------------------------------------
+
+export const fetchUserDetailAction = createAsyncThunk(
+  "users/detail",
+  async (id, { rejectWithValue, getState, dispatch }) => {
+    const users = getState()?.users;
+    const { userAuth } = users;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    try {
+      const { data } = await baseAPI.get(`/users/${id}`, config);
       //----------------------------------------------------
       //Dispatch Action to redirect after creating Category
       //----------------------------------------------------
@@ -226,6 +289,30 @@ const usersSlices = createSlice({
       state.appError = action?.payload.message;
       state.serverError = action?.error.message;
     });
+
+    //--------------------------
+    // Update User Profile
+    //--------------------------
+    builder.addCase(updateUserAction.pending, (state, action) => {
+      state.loading = true;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+    builder.addCase(resetUpdate, (state, action) => {
+      state.userIsUpdated = true;
+    });
+    builder.addCase(updateUserAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.userUpdated = action?.payload;
+      state.userIsUpdated = false;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+    builder.addCase(updateUserAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action?.payload.message;
+      state.serverError = action?.error.message;
+    });
     //--------------------------
     // Upload Profile Photo
     //--------------------------
@@ -242,6 +329,26 @@ const usersSlices = createSlice({
       state.serverError = undefined;
     });
     builder.addCase(uploadProfilePhotoAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action?.payload.message;
+      state.serverError = action?.error.message;
+    });
+    //--------------------------
+    // Fetch Single User
+    //--------------------------
+    builder.addCase(fetchUserDetailAction.pending, (state, action) => {
+      state.loading = true;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+
+    builder.addCase(fetchUserDetailAction.fulfilled, (state, action) => {
+      state.userDetails = action?.payload;
+      state.loading = false;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+    builder.addCase(fetchUserDetailAction.rejected, (state, action) => {
       state.loading = false;
       state.appError = action?.payload.message;
       state.serverError = action?.error.message;

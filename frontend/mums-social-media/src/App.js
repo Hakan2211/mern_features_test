@@ -43,6 +43,7 @@ import UpdateComment from "./components/Comments/UpdateComment";
 //------------------------------
 import Profile from "./pages/Users/Profile/Profile";
 import UploadPhoto from "./pages/Users/Profile/UploadPhoto/UploadPhoto";
+import UpdateProfile from "./pages/Users/Profile/UpdateProfile/UpdateProfile";
 
 const App = () => {
   const user = useSelector((state) => state.users);
@@ -76,6 +77,7 @@ const App = () => {
           <Route path="/update-post/:id" element={<UpdatePost />} />
           <Route path="/update-comment/:id" element={<UpdateComment />} />
           <Route path="/upload-photo/:id" element={<UploadPhoto />} />
+          <Route path="/update-profile/:id" element={<UpdateProfile />} />
         </Route>
 
         <Route path="/posts" element={<PostList />} />
