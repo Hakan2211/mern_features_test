@@ -155,6 +155,73 @@ export const fetchUserDetailAction = createAsyncThunk(
 );
 
 //----------------------------------------------------------------
+// Follow User - Thunk
+//----------------------------------------------------------------
+
+export const followUserAction = createAsyncThunk(
+  "users/follow",
+  async (userToFollowId, { rejectWithValue, getState, dispatch }) => {
+    const users = getState()?.users;
+    const { userAuth } = users;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    try {
+      const { data } = await baseAPI.patch(
+        `/users/follow`,
+        { followId: userToFollowId },
+        config
+      );
+      //----------------------------------------------------
+      //Dispatch Action to redirect after creating Category
+      //----------------------------------------------------
+
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response.data);
+    }
+  }
+);
+//----------------------------------------------------------------
+// Unfollow User - Thunk
+//----------------------------------------------------------------
+
+export const unfollowUserAction = createAsyncThunk(
+  "users/unfollow",
+  async (userToUnfollowId, { rejectWithValue, getState, dispatch }) => {
+    const users = getState()?.users;
+    const { userAuth } = users;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    try {
+      const { data } = await baseAPI.patch(
+        `/users/unfollow`,
+        { unfollowId: userToUnfollowId },
+        config
+      );
+      //----------------------------------------------------
+      //Dispatch Action to redirect after creating Category
+      //----------------------------------------------------
+
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response.data);
+    }
+  }
+);
+
+//----------------------------------------------------------------
 // Logout Action - Thunk
 //----------------------------------------------------------------
 export const logoutAction = createAsyncThunk(
@@ -349,6 +416,48 @@ const usersSlices = createSlice({
       state.serverError = undefined;
     });
     builder.addCase(fetchUserDetailAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action?.payload.message;
+      state.serverError = action?.error.message;
+    });
+    //--------------------------
+    // Follow User
+    //--------------------------
+    builder.addCase(followUserAction.pending, (state, action) => {
+      state.loading = true;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+
+    builder.addCase(followUserAction.fulfilled, (state, action) => {
+      state.followed = action?.payload;
+      state.unfollowed = undefined;
+      state.loading = false;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+    builder.addCase(followUserAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action?.payload.message;
+      state.serverError = action?.error.message;
+    });
+    //--------------------------
+    // Unfollow User
+    //--------------------------
+    builder.addCase(unfollowUserAction.pending, (state, action) => {
+      state.loading = true;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+
+    builder.addCase(unfollowUserAction.fulfilled, (state, action) => {
+      state.unfollowed = action?.payload;
+      state.followed = undefined;
+      state.loading = false;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+    builder.addCase(unfollowUserAction.rejected, (state, action) => {
       state.loading = false;
       state.appError = action?.payload.message;
       state.serverError = action?.error.message;

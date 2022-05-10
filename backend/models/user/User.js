@@ -34,6 +34,7 @@ const UserSchema = new mongoose.Schema(
       default: "User",
     },
     isFollowing: { type: Boolean, default: false },
+    isUnfollowing: { type: Boolean, default: false },
     isAccountVerified: { type: Boolean, default: false },
     accountVerificationToken: String,
     accountVerificationTokenExpires: Date,

@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import "./profile.scss";
-import { userProfileAction } from "../../../redux/slices/users/usersSlices";
+import {
+  followUserAction,
+  unfollowUserAction,
+  userProfileAction,
+} from "../../../redux/slices/users/usersSlices";
 import { useDispatch, useSelector } from "react-redux";
 import DateFormmater from "../../../utils/DateFormatter";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -53,10 +57,14 @@ const Profile = () => {
                 <div className="profile-page__header__options__list">
                   <ul className="profile-page__header__options__list__items">
                     <li>
-                      <button>Follow</button>
+                      <button onClick={() => dispatch(followUserAction(id))}>
+                        Follow
+                      </button>
                     </li>
                     <li>
-                      <button>Unfollow</button>
+                      <button onClick={() => dispatch(unfollowUserAction(id))}>
+                        Unfollow
+                      </button>
                     </li>
                     <li>
                       <button>Send Message</button>

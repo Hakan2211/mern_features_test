@@ -113,6 +113,7 @@ const followingUser = async (req, res) => {
     followId,
     {
       $push: { followers: loginUserId },
+      isFollowing: true,
     },
     { new: true }
   );
