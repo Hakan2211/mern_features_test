@@ -44,6 +44,7 @@ import UpdateComment from "./components/Comments/UpdateComment";
 import Profile from "./pages/Users/Profile/Profile";
 import UploadPhoto from "./pages/Users/Profile/UploadPhoto/UploadPhoto";
 import UpdateProfile from "./pages/Users/Profile/UpdateProfile/UpdateProfile";
+import Email from "./pages/Users/Profile/Email/Email";
 
 const App = () => {
   const user = useSelector((state) => state.users);
@@ -74,6 +75,7 @@ const App = () => {
         >
           <Route path="/add-category" element={<AddCategory />} />
           <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/send-email" element={<Email />} />
           <Route path="/update-post/:id" element={<UpdatePost />} />
           <Route path="/update-comment/:id" element={<UpdateComment />} />
           <Route path="/upload-photo/:id" element={<UploadPhoto />} />

@@ -9,12 +9,19 @@ import { useDispatch, useSelector } from "react-redux";
 import DateFormmater from "../../../utils/DateFormatter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-const Profile = () => {
+const Profile = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const user = useSelector((state) => state.users);
   const { profile, loading, appError, serverError } = user;
+
+  console.log(navigate);
+
+  const sendMailHandler = () => {
+    navigate("/send-email", { state: { email: profile?.email } });
+  };
 
   useEffect(() => {
     dispatch(userProfileAction(id));
@@ -67,7 +74,7 @@ const Profile = () => {
                       </button>
                     </li>
                     <li>
-                      <button>Send Message</button>
+                      <button onClick={sendMailHandler}>Send Message</button>
                     </li>
                     <li>
                       <Link to={`/upload-photo/${profile?._id}`}>
