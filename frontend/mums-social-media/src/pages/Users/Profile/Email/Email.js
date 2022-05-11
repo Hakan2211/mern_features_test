@@ -7,6 +7,10 @@ import { sendEmailAction } from "../../../../redux/slices/email/emailSlices";
 const Email = () => {
   const dispatch = useDispatch();
   const { state } = useLocation();
+  const navigate = useNavigate();
+
+  const email = useSelector((state) => state.email);
+  const { isMailSent, loading, appError, serverError } = email;
 
   const {
     register,
@@ -19,6 +23,10 @@ const Email = () => {
     // console.log(data);
     dispatch(sendEmailAction(data));
   };
+
+  if (isMailSent) {
+    navigate(`/profile/${state?.id}`);
+  }
   return (
     <div className="register">
       <h1>Send Email</h1>

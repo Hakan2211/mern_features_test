@@ -20,7 +20,9 @@ const Profile = (props) => {
   console.log(navigate);
 
   const sendMailHandler = () => {
-    navigate("/send-email", { state: { email: profile?.email } });
+    navigate("/send-email", {
+      state: { email: profile?.email, id: profile?._id },
+    });
   };
 
   useEffect(() => {

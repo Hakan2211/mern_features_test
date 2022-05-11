@@ -2,6 +2,12 @@ import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import baseAPI from "../../../apis/baseAPI";
 
 //------------------------------
+// Action for Redirect
+//------------------------------
+
+const resetEmailAction = createAction("mail/reset");
+
+//------------------------------
 // Update Post
 //------------------------------
 export const sendEmailAction = createAsyncThunk(
@@ -26,6 +32,7 @@ export const sendEmailAction = createAsyncThunk(
         config
       );
 
+      dispatch(resetEmailAction());
       return data;
     } catch (error) {
       if (!error?.response) {
@@ -47,11 +54,16 @@ const emailSlices = createSlice({
       state.loading = true;
     });
 
+    builder.addCase(resetEmailAction, (state, action) => {
+      state.isMailSent = true;
+    });
+
     builder.addCase(sendEmailAction.fulfilled, (state, action) => {
       state.loading = false;
       state.emailMessage = action?.payload;
       state.appError = undefined;
       state.serverError = undefined;
+      state.isMailSent = false;
     });
     builder.addCase(sendEmailAction.rejected, (state, action) => {
       state.loading = false;
