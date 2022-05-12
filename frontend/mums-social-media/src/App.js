@@ -45,6 +45,7 @@ import Profile from "./pages/Users/Profile/Profile";
 import UploadPhoto from "./pages/Users/Profile/UploadPhoto/UploadPhoto";
 import UpdateProfile from "./pages/Users/Profile/UpdateProfile/UpdateProfile";
 import Email from "./pages/Users/Profile/Email/Email";
+import AccountVerificationSuccess from "./components/Account Verification/AccountVerificationSuccess";
 
 const App = () => {
   const user = useSelector((state) => state.users);
@@ -80,6 +81,10 @@ const App = () => {
           <Route path="/update-comment/:id" element={<UpdateComment />} />
           <Route path="/upload-photo/:id" element={<UploadPhoto />} />
           <Route path="/update-profile/:id" element={<UpdateProfile />} />
+          <Route
+            path="/verify-account/:id"
+            element={<AccountVerificationSuccess />}
+          />
         </Route>
 
         <Route path="/posts" element={<PostList />} />

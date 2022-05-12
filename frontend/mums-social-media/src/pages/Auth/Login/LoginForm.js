@@ -4,13 +4,13 @@ import { useSelector } from "react-redux";
 
 const LoginForm = ({ onSubmit }) => {
   const usersData = useSelector((state) => state.users);
-  const { appError, serverError, loading } = usersData;
+  const { appError, serverError, loading, userAuth } = usersData;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  console.log(userAuth);
   return (
     <div className="login">
       <h1>Login to your Account</h1>

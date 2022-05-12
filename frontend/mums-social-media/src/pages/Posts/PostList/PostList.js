@@ -32,21 +32,23 @@ const PostList = () => {
         postLists?.map((post) => (
           <div key={post.id} className="post-list__card">
             <div className="post-list__card__header">
-              <div className="post-list__card__header__userinfo">
-                <div className="post-list__card__header__userinfo__image-container">
-                  <img
-                    src={post?.user?.profilePicture}
-                    className="post-list__card__header__userinfo__image-container__image"
-                    alt="post user"
-                  />
+              <Link to={`/profile/${post?.user?._id}`}>
+                <div className="post-list__card__header__userinfo">
+                  <div className="post-list__card__header__userinfo__image-container">
+                    <img
+                      src={post?.user?.profilePicture}
+                      className="post-list__card__header__userinfo__image-container__image"
+                      alt="post user"
+                    />
+                  </div>
+                  <div className="post-list__card__header__userinfo__right">
+                    <p className="post-list__card__header__userinfo__name">
+                      {post?.user?.name}
+                    </p>
+                    <DateFormatter date={post?.createdAt} />
+                  </div>
                 </div>
-                <div className="post-list__card__header__userinfo__right">
-                  <p className="post-list__card__header__userinfo__name">
-                    {post?.user?.name}
-                  </p>
-                  <DateFormatter date={post?.createdAt} />
-                </div>
-              </div>
+              </Link>
             </div>
             <div className="post-list__card__image-container">
               <img src={post?.image} className="post-list__image" alt="post" />

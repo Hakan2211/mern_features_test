@@ -8,6 +8,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import DateFormmater from "../../../utils/DateFormatter";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import AccountVerification from "../../../components/Account Verification/AccountVerification";
+import AccountVerificationSuccess from "../../../components/Account Verification/AccountVerificationSuccess";
 
 const Profile = (props) => {
   const { id } = useParams();
@@ -15,9 +17,15 @@ const Profile = (props) => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.users);
-  const { profile, loading, appError, serverError } = user;
+  const { profile, loading, appError, serverError, userAuth } = user;
 
-  console.log(navigate);
+  const account = useSelector((state) => state?.accountVerification);
+  const {
+    loading: verificationLoading,
+    appError: verificationAppError,
+    serverError: verificationServerError,
+    token,
+  } = account;
 
   const sendMailHandler = () => {
     navigate("/send-email", {
@@ -28,6 +36,9 @@ const Profile = (props) => {
   useEffect(() => {
     dispatch(userProfileAction(id));
   }, [dispatch, id]);
+
+  const isLoginUser = userAuth?._id === profile?._id;
+  console.log(isLoginUser);
   return (
     <>
       <div>
@@ -61,20 +72,36 @@ const Profile = (props) => {
                 ) : (
                   <span>Unverified</span>
                 )}
+                {/* /--------------------Account Verification---------------------------- */}
+                {!profile?.isAccountVerified && <AccountVerification />}
+                {verificationLoading ? (
+                  <h1>Loading...</h1>
+                ) : verificationAppError || verificationServerError ? (
+                  { verificationServerError } - { verificationAppError }
+                ) : null}
               </div>
               <div className="profile-page__header__options">
                 <div className="profile-page__header__options__list">
                   <ul className="profile-page__header__options__list__items">
-                    <li>
-                      <button onClick={() => dispatch(followUserAction(id))}>
-                        Follow
-                      </button>
-                    </li>
-                    <li>
-                      <button onClick={() => dispatch(unfollowUserAction(id))}>
-                        Unfollow
-                      </button>
-                    </li>
+                    {!isLoginUser ? (
+                      <>
+                        {" "}
+                        <li>
+                          <button
+                            onClick={() => dispatch(followUserAction(id))}
+                          >
+                            Follow
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            onClick={() => dispatch(unfollowUserAction(id))}
+                          >
+                            Unfollow
+                          </button>
+                        </li>
+                      </>
+                    ) : null}
                     <li>
                       <button onClick={sendMailHandler}>Send Message</button>
                     </li>

@@ -53,6 +53,7 @@ const login = async (req, res) => {
       profilePicture: user.profilePicture,
       isAdmin: user.isAdmin,
       token: generateToken(user?._id),
+      isVerified: user?.isAccountVerified,
     });
   }
 };
@@ -67,23 +68,19 @@ const generateVerificationToken = async (req, res) => {
   const user = await User.findById(loginUserId);
 
   try {
-    const verificationToken = await user.createAccountVerificationToken();
+    const verificationToken = await user?.createAccountVerificationToken();
     await user.save();
 
-    const resetURL = `If you were requested to verify your account, verify now within 30 minutes, otherwise ignore this.message <a href="http://localhost:3000/verify-account/${verificationToken}">Verify your Account</a>`;
+    const resetURL = `Hello, <br> If you were requested to verify your account, verify now within 30 minutes, otherwise ignore this message. <br> <a href="http://localhost:3000/verify-account/${verificationToken}">Verify your Account</a>`;
     const msg = {
-      to: "hbilgic1992@gmail.com", // Change to your recipient
+      to: user?.email, // Change to your recipient
       from: "hbilgic777@gmail.com", // Change to your verified sender
-      subject: "Klausurvorbereitung",
-      text: "Ich schicke Dir die Alkklausuren.",
+      subject: "Verify your account",
+      text: "Verify your account.",
       html: resetURL,
     };
     await sgMail.send(msg);
-    res
-      .status(StatusCodes.OK)
-      .json("Email was sent")
-
-      .catch((error) => {});
+    res.status(StatusCodes.OK).json(resetURL);
   } catch (error) {
     res.json(error);
   }
@@ -125,7 +122,7 @@ const forgetPasswordToken = async (req, res) => {
 
     await user.save();
 
-    const resetURL = `If you were requested to reset your password, reset now within 30 minutes, otherwise ignore this.message <a href="http://localhost:3000/reset-password/${token}">Reset your password</a>`;
+    const resetURL = `If you were requested to reset your password, reset now within 30 minutes, otherwise ignore this message <a href="http://localhost:3000/reset-password/${token}">Reset your password</a>`;
     const msg = {
       to: "hbilgic1992@gmail.com", // Change to your recipient
       from: "hbilgic777@gmail.com", // Change to your verified sender
