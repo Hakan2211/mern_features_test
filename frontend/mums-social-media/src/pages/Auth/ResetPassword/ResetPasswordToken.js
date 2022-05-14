@@ -7,6 +7,7 @@ import { passwordResetTokenAction } from "../../../redux/slices/users/usersSlice
 const ResetPasswordToken = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   const {
     register,
@@ -15,7 +16,12 @@ const ResetPasswordToken = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    const payload = {
+      password: data?.password,
+      token: id,
+    };
+    console.log(payload);
+    dispatch(passwordResetTokenAction(payload));
   };
 
   return (

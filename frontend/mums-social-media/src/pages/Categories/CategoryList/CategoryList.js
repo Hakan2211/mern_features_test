@@ -16,7 +16,6 @@ const CategoryList = () => {
   const categories = useSelector((state) => state?.categories);
   const { categoryList, loading, appError, serverError, isDeleted } =
     categories;
-
   useEffect(() => {
     dispatch(fetchCategoriesAction());
     if (isDeleted) {
@@ -43,7 +42,7 @@ const CategoryList = () => {
               <DateFormatter date={category.createdAt} />
             </p>
 
-            <p>{category.user.name}</p>
+            <p>{category?.user?.name}</p>
             <Link to={`/update-category/${category?._id}`}>
               <MdOutlineModeEditOutline /> Update
             </Link>
