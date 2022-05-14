@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,6 +8,17 @@ const ResetPasswordToken = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+
+  const user = useSelector((state) => state?.users);
+  const { passwordResetToken } = user;
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (passwordResetToken) {
+        navigate("/login");
+      }
+    }, 5000);
+  }, [passwordResetToken]);
 
   const {
     register,

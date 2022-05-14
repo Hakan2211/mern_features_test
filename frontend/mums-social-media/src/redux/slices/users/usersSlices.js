@@ -506,7 +506,7 @@ const usersSlices = createSlice({
 
     builder.addCase(passwordResetAction.fulfilled, (state, action) => {
       state.loading = false;
-      state.passwordResetToken = action?.payload;
+      state.passwordReset = action?.payload;
       state.appError = undefined;
       state.serverError = undefined;
     });
@@ -526,7 +526,7 @@ const usersSlices = createSlice({
 
     builder.addCase(passwordResetTokenAction.fulfilled, (state, action) => {
       state.loading = false;
-      state.passwordReset = action?.payload;
+      state.passwordResetToken = action?.payload;
       state.appError = undefined;
       state.serverError = undefined;
     });
