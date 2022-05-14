@@ -1,14 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { updatePasswordAction } from "../../../redux/slices/users/usersSlices";
+import { useNavigate, useParams } from "react-router-dom";
+import { passwordResetTokenAction } from "../../../redux/slices/users/usersSlices";
 
-const UpdatePassword = () => {
+const ResetPasswordToken = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state?.users);
-  const { passwordIsUpdated, userAuth } = user;
+
   const {
     register,
     handleSubmit,
@@ -16,15 +15,12 @@ const UpdatePassword = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    dispatch(updatePasswordAction(data?.password));
+    console.log(data);
   };
 
-  if (passwordIsUpdated) {
-    navigate(`/profile/${userAuth?._id}`);
-  }
   return (
     <div className="update-password">
-      <h1>Update Password</h1>
+      <h1>Reset Password</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="login__form">
         <div className="text__container">
           <label>Password</label>
@@ -46,4 +42,4 @@ const UpdatePassword = () => {
   );
 };
 
-export default UpdatePassword;
+export default ResetPasswordToken;

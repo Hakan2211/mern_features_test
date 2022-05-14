@@ -20,7 +20,7 @@ router
   .route("/generate-verify-email-token")
   .post(authenticateUser, generateVerificationToken);
 router.route("/verify-account").patch(authenticateUser, accountVerification);
-router.route("/forget-password").post(authenticateUser, forgetPasswordToken);
-router.route("/reset-password").patch(authenticateUser, passwordReset);
+router.route("/forget-password").post(forgetPasswordToken);
+router.route("/reset-password").patch(passwordReset);
 
 export default router;

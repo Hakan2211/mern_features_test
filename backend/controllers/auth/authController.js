@@ -122,12 +122,11 @@ const forgetPasswordToken = async (req, res) => {
 
     await user.save();
 
-    const resetURL = `If you were requested to reset your password, reset now within 30 minutes, otherwise ignore this message <a href="http://localhost:3000/reset-password/${token}">Reset your password</a>`;
+    const resetURL = `Hello, <br> If you were requested to reset your password, reset now within 30 minutes, otherwise ignore this message. <br> <a href="http://localhost:3000/reset-password/${token}">Reset your password</a>`;
     const msg = {
-      to: "hbilgic1992@gmail.com", // Change to your recipient
+      to: email, // Change to your recipient
       from: "hbilgic777@gmail.com", // Change to your verified sender
       subject: "Reset password",
-      text: "Ich schicke Dir die Alkklausuren.",
       html: resetURL,
     };
     await sgMail.send(msg);

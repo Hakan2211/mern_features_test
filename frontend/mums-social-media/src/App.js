@@ -47,6 +47,8 @@ import UpdateProfile from "./pages/Users/Profile/UpdateProfile/UpdateProfile";
 import Email from "./pages/Users/Profile/Email/Email";
 import AccountVerificationSuccess from "./components/Account Verification/AccountVerificationSuccess";
 import UpdatePassword from "./pages/Auth/UpdatePassword/UpdatePassword";
+import ResetPassword from "./pages/Auth/ResetPassword/ResetPassword";
+import ResetPasswordToken from "./pages/Auth/ResetPassword/ResetPasswordToken";
 
 const App = () => {
   const user = useSelector((state) => state.users);
@@ -89,6 +91,8 @@ const App = () => {
           />
         </Route>
 
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/reset-password/:id" element={<ResetPasswordToken />} />
         <Route path="/posts" element={<PostList />} />
         <Route path="/posts/:id" element={<PostDetail />} />
         <Route path="/category-list" element={<CategoryList />} />

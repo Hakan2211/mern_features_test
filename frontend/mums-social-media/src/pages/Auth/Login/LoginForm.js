@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const LoginForm = ({ onSubmit }) => {
   const usersData = useSelector((state) => state.users);
@@ -10,7 +11,7 @@ const LoginForm = ({ onSubmit }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.log(userAuth);
+
   return (
     <div className="login">
       <h1>Login to your Account</h1>
@@ -45,7 +46,9 @@ const LoginForm = ({ onSubmit }) => {
           <button type="submit">Submit</button>
         )}
       </form>
-
+      <div className="reset-password">
+        <Link to="/reset-password">Forgot your password?</Link>
+      </div>
       {appError || serverError ? (
         <div>
           {serverError} - {appError}
