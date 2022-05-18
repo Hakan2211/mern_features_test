@@ -37,4 +37,7 @@ body {
 
 a {
   text-decoration: none;
+  &:visited {
+    color: #533c45;
+  }
 }

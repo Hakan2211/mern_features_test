@@ -16,40 +16,43 @@ const RegisterForm = ({ onSubmit }) => {
   } = useForm();
 
   return (
-    <div className="register">
-      <h1>Register an Account</h1>
+    <div className="register__form__container">
       <form onSubmit={handleSubmit(onSubmit)} className="register__form">
-        <div className="text__container">
+        <h1>Register an Account</h1>
+        <div className="register__form__text__container">
           <label>Name</label>
           <input
             name="name"
             ref={register}
             {...register("name", { required: "Please enter your name." })}
             type="text"
+            placeholder="Please enter your name"
           />
         </div>
         {errors.name && (
           <span className="error-required-field">This field is required.</span>
         )}
-        <div className="text__container">
+        <div className="register__form__text__container">
           <label>Email</label>
           <input
             name="email"
             ref={register}
             {...register("email", { required: true })}
             type="email"
+            placeholder="Enter your email"
           />
         </div>
         {errors.email && (
           <span className="error-required-field">This field is required.</span>
         )}
-        <div className="text__container">
+        <div className="register__form__text__container">
           <label>Password</label>
           <input
             name="password"
             ref={register}
             {...register("password", { required: true })}
             type="password"
+            placeholder="Enter your password"
           />
         </div>
         {errors.password && (

@@ -3,6 +3,7 @@ import RegisterForm from "./RegisterForm";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUserAction } from "../../../redux/slices/users/usersSlices";
 import { useNavigate } from "react-router-dom";
+import "./register.scss";
 
 const Register = () => {
   const dispatch = useDispatch();
