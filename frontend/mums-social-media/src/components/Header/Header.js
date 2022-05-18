@@ -4,6 +4,7 @@ import "./header.scss";
 import logo from "../../assets/img/132_generated.jpg";
 import { NavLink } from "react-router-dom";
 import Nav from "../Navigation/Nav";
+import Auth from "../Navigation/Auth/Auth";
 
 const Header = () => {
   return (
@@ -13,16 +14,8 @@ const Header = () => {
           <img src={logo} alt="logo" className="logo-img" />
         </NavLink>
       </div>
-
-      {/* <div className="logo-container">
-        <img
-          src={logo}
-          alt="Logo Header"
-          className="logo-img"
-          onClick={() => navigate("/")}
-        />
-      </div> */}
       <Nav />
+      <Auth />
     </div>
   );
 };

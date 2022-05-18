@@ -1,9 +1,13 @@
+:root {
+  box-sizing: border-box;
+}
+
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
 html {
@@ -23,8 +27,14 @@ html {
 
 body {
   box-sizing: border-box;
+  //background-color: #ebe1c1;
+  background-color: $prussian-blue;
 
   @include respond(tab-port) {
     padding: 0;
   }
+}
+
+a {
+  text-decoration: none;
 }

@@ -9,6 +9,8 @@ import Header from "./components/Header/Header";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import Gallery from "./pages/Gallery/Gallery";
+import Footer from "./components/Footer/Footer";
+
 //------------------------------
 //Auth
 //------------------------------
@@ -54,50 +56,54 @@ const App = () => {
   const user = useSelector((state) => state.users);
   const { userAuth } = user;
   return (
-    <div className="app grid">
+    <div className="app">
       <Header />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        {/* <Route
+      <main className="main">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          {/* <Route
           element={
             <ProtectedRoutes isAllowed={!!userAuth} redirectPath={"/profile"} />
           }
         >
          
         </Route> */}
-        <Route
-          element={
-            <ProtectedRoutes isAllowed={!!userAuth} redirectPath={"/"} />
-          }
-        >
-          <Route path="/add-category" element={<AddCategory />} />
-          <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/send-email" element={<Email />} />
-          <Route path="/update-password" element={<UpdatePassword />} />
-          <Route path="/update-post/:id" element={<UpdatePost />} />
-          <Route path="/update-comment/:id" element={<UpdateComment />} />
-          <Route path="/upload-photo/:id" element={<UploadPhoto />} />
-          <Route path="/update-profile/:id" element={<UpdateProfile />} />
           <Route
-            path="/verify-account/:id"
-            element={<AccountVerificationSuccess />}
-          />
-        </Route>
+            element={
+              <ProtectedRoutes isAllowed={!!userAuth} redirectPath={"/"} />
+            }
+          >
+            <Route path="/add-category" element={<AddCategory />} />
+            <Route path="/create-post" element={<CreatePost />} />
+            <Route path="/send-email" element={<Email />} />
+            <Route path="/update-password" element={<UpdatePassword />} />
+            <Route path="/update-post/:id" element={<UpdatePost />} />
+            <Route path="/update-comment/:id" element={<UpdateComment />} />
+            <Route path="/upload-photo/:id" element={<UploadPhoto />} />
+            <Route path="/update-profile/:id" element={<UpdateProfile />} />
+            <Route
+              path="/verify-account/:id"
+              element={<AccountVerificationSuccess />}
+            />
+          </Route>
 
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/reset-password/:id" element={<ResetPasswordToken />} />
-        <Route path="/posts" element={<PostList />} />
-        <Route path="/posts/:id" element={<PostDetail />} />
-        <Route path="/category-list" element={<CategoryList />} />
-        <Route path="/update-category/:id" element={<UpdateCategory />} />
-      </Routes>
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/reset-password/:id" element={<ResetPasswordToken />} />
+          <Route path="/posts" element={<PostList />} />
+          <Route path="/posts/:id" element={<PostDetail />} />
+          <Route path="/category-list" element={<CategoryList />} />
+          <Route path="/update-category/:id" element={<UpdateCategory />} />
+        </Routes>
+      </main>
+
+      <Footer />
     </div>
   );
 };

@@ -1,0 +1,32 @@
+.nav-auth {
+  display: flex;
+  align-items: center;
+  a {
+    padding: 0.8rem;
+    margin: 0 0.8rem;
+    transition: all 0.4s ease-in-out;
+    &:hover {
+      color: #55778b;
+    }
+  }
+  :last-child {
+    margin-right: 3.2rem;
+    border: 0.2rem solid #ebe1c1;
+    color: #55778b;
+    border-radius: 1rem;
+    background: #fff;
+    transition: all 0.4s ease-in-out;
+    &:hover {
+      background: #55778b;
+      color: #fff;
+    }
+  }
+}
+
+.inactive {
+  color: #fff;
+}
+
+.active {
+  color: #fff;
+}

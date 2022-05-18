@@ -1,0 +1,8 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 45vh 45vh;
+  grid-template-areas:
+    " Main Main Main Main Main Main Main Main "
+    " Main Main Main Main Main Main Main Main ";
+}
