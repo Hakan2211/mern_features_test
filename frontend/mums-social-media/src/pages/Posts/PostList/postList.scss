@@ -1,11 +1,50 @@
+.post-list__container {
+  grid-row: 1 / 3;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+  //grid-auto-flow: column;
+  grid-gap: 3rem;
+  margin-top: 3.2rem;
+  padding: 2rem;
+}
+
 .post-list__card {
-  height: 65rem;
-  width: 30rem;
-  background-color: blanchedalmond;
+  //height: 35rem;
+  //width: 35rem;
+  background-color: #ebe1c1;
+  padding: 0.5rem;
+  border-radius: 1rem;
   &__header {
-    height: 5rem;
+    height: 6rem;
     width: 100%;
-    background-color: darkcyan;
+    background-color: #2a4555;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1rem 1rem 0 0;
+    color: #fff;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+
+    &__likes {
+      width: 5rem;
+      height: 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 1rem 0 0;
+      margin-right: 0.8rem;
+      &__icon {
+        cursor: pointer;
+        stroke: rgb(163, 31, 31);
+        stroke-width: 0.2rem;
+        font-size: 2rem;
+        margin-bottom: 0.6rem;
+        fill: #2a4555;
+      }
+    }
 
     &__userinfo {
       height: 5rem;
@@ -14,13 +53,21 @@
       display: flex;
       align-items: center;
       justify-content: space-evenly;
-      background-color: red;
+
       padding: 0.4rem;
+      border-radius: 1rem 0 0 0;
+      &__name {
+        margin-bottom: 0.6rem;
+        letter-spacing: 0.1rem;
+      }
 
       &__image-container {
         height: 5rem;
         width: 5rem;
         padding: 0.3rem;
+        border: 0.1rem solid #ebe1c1;
+        border-radius: 100%;
+
         &__image {
           width: 100%;
           height: 100%;
@@ -49,44 +96,65 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: blueviolet;
+    background-color: #2a4555;
+    color: white;
+    padding: 0.6rem;
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
     &__category {
       padding: 1rem;
       margin-top: 0.8rem;
+      font-size: 1.2rem;
+      letter-spacing: 0.1rem;
       span {
-        border: 0.1rem solid black;
+        border: 0.1rem solid #ebe1c1;
         padding: 0.8rem;
-        border-radius: 10rem;
+        border-radius: 1rem;
         cursor: pointer;
       }
     }
     &__title {
       padding: 1rem;
-      font-size: 1.6rem;
+      font-size: 2.4rem;
+      letter-spacing: 0.1rem;
     }
     &__subtext {
       padding: 1rem;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
     }
     &__link {
       position: absolute;
-      height: 2rem;
+      height: 2.4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       right: 1rem;
       bottom: 1rem;
       cursor: pointer;
+      width: 12rem;
+      border: 0.2rem solid #ebe1c1;
+      border-radius: 5rem;
+      padding: 0.6rem;
+      font-size: 1.6rem;
+      white-space: nowrap;
+      background-color: #fff;
+      margin-bottom: 1rem;
 
-      width: 10rem;
+      &__text {
+        color: #55778b;
+      }
+
       &__icon {
         font-size: 1.6rem;
-        color: white;
+        color: #55778b;
       }
       span {
         font-size: 1.6rem;
-
+        color: #55778b;
         width: 6rem;
         white-space: nowrap;
         margin-right: 0.3rem;
@@ -94,32 +162,41 @@
       }
     }
   }
+
   &__info {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    background-color: rgb(130, 130, 158);
+    justify-content: space-between;
+    background-color: #2a4555;
     height: 5rem;
+    padding: 2rem;
+    color: #fff;
+    border-radius: 0 0 1rem 1rem;
+
     &__comments {
-      background-color: white;
-      height: 3rem;
-      width: 10rem;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      &__icon {
+        margin-bottom: 0.8rem;
+        font-size: 1.6rem;
+      }
       span {
-        margin-left: 0.8rem;
+        font-size: 1.2rem;
       }
     }
-    &__likes {
-      width: 10rem;
-      background-color: white;
-      height: 3rem;
+    &__views {
       display: flex;
-      align-items: center;
-      cursor: pointer;
+      flex-direction: column;
+      &__icon {
+        margin-bottom: 0.8rem;
+        font-size: 1.6rem;
+      }
       span {
-        margin-left: 0.8rem;
+        font-size: 1.2rem;
       }
     }
+  }
+  .outline {
+    border-top: 0.2rem solid #ebe1c1;
   }
 }
