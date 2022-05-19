@@ -84,6 +84,7 @@
   &__image-container {
     height: 40rem;
     width: 100%;
+    cursor: pointer;
 
     img {
       width: 100%;
@@ -197,6 +198,6 @@
     }
   }
   .outline {
-    border-top: 0.2rem solid #ebe1c1;
+    border-top: 0.1rem solid #ebe1c1;
   }
 }

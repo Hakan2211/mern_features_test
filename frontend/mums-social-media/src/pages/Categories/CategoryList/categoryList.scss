@@ -1,0 +1,119 @@
+.category {
+  grid-row: 1 / 3;
+  grid-column: 1 / -1;
+}
+
+.category-list__container {
+  // grid-row: 1 / 3;
+  // grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+  //grid-auto-flow: column;
+  grid-gap: 3rem;
+  margin-top: 3.2rem;
+  padding: 2rem;
+}
+
+.category-list__card {
+  background-color: #ebe1c1;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  position: relative;
+  &__header {
+    height: 6rem;
+    width: 100%;
+    background-color: #2a4555;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1rem 1rem 0 0;
+    color: #fff;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+
+    &__userinfo {
+      height: 5rem;
+      width: 15rem;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      padding: 0.4rem;
+      border-radius: 1rem 0 0 0;
+      &__name {
+        margin-bottom: 0.6rem;
+        letter-spacing: 0.1rem;
+        //background-color: yellow;
+      }
+
+      &__image-container {
+        height: 5rem;
+        width: 5rem;
+        padding: 0.3rem;
+        border: 0.1rem solid #ebe1c1;
+        border-radius: 100%;
+
+        &__image {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+        }
+      }
+
+      &__name {
+        margin-left: 0rem;
+        font-size: 1.2rem;
+      }
+
+      &__options {
+        height: 3rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        margin-right: 3rem;
+
+        button {
+          border: none;
+          background: transparent;
+          cursor: pointer;
+        }
+        &__update-icon {
+          margin-right: 3rem;
+          font-size: 2rem;
+          color: #fff;
+        }
+
+        &__delete-icon {
+          font-size: 2rem;
+          color: #fff;
+        }
+      }
+    }
+  }
+  &__image-container {
+    height: 40rem;
+    width: 100%;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #ebe1c1;
+    font-size: 4rem;
+    transform: translate(-50%, 0);
+    letter-spacing: 0.2rem;
+    border: 0.2rem solid #ebe1c1;
+    border-radius: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+  }
+}

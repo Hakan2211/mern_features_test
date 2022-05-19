@@ -64,11 +64,13 @@ const PostList = () => {
                 </div>
               </div>
               <div className="post-list__card__image-container">
-                <img
-                  src={post?.image}
-                  className="post-list__image"
-                  alt="post"
-                />
+                <Link to={`/posts/${post?._id}`}>
+                  <img
+                    src={post?.image}
+                    className="post-list__image"
+                    alt="post"
+                  />
+                </Link>
               </div>
               <div className="post-list__card__description">
                 <div className="post-list__card__description__header">
