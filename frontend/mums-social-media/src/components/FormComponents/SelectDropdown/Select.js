@@ -1,6 +1,7 @@
 import React from "react";
 import Select from "react-select";
 import { Controller } from "react-hook-form";
+import "./selectDropdown.scss";
 
 const SelectDropdown = ({
   label,
@@ -15,7 +16,7 @@ const SelectDropdown = ({
   }));
 
   return (
-    <div>
+    <div className="select">
       <label>{label}</label>
       <Controller
         name={"categories"}

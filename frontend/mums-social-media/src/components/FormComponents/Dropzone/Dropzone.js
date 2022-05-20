@@ -2,7 +2,8 @@ import React, { useEffect, useCallback } from "react";
 import "./dropzone.scss";
 import { useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
-import { MdClose } from "react-icons/md";
+import { MdFileUpload } from "react-icons/md";
+import "./dropzone.scss";
 
 const Dropzone = (props) => {
   const { name, label, files = [], onChange } = props;
@@ -46,8 +47,8 @@ const Dropzone = (props) => {
   // }, [register, unregister, name]);
 
   return (
-    <>
-      <label className=" " htmlFor={name}>
+    <div className="dropzone">
+      <label className="dropzone__label" htmlFor={name}>
         {label}
       </label>
       <div
@@ -56,13 +57,14 @@ const Dropzone = (props) => {
         role="button"
         aria-label="File Upload"
         id={name}
+        className="dropzone__area"
       >
         <input {...props} {...getInputProps()} />
-        <div
-          style={{ width: "500px", border: "black solid 2px" }}
-          className={" " + (isDragActive ? " " : " ")}
-        >
-          <p className=" ">Drop the files here ...</p>
+        <div className={"dropzone__input" + (isDragActive ? " active " : " ")}>
+          <MdFileUpload className="dropzone__input__icon" />
+          <p className="dropzone__input__text">
+            Upload an image with file size smaller than 3MB
+          </p>
 
           {!!files?.length && (
             <div className=" ">
@@ -83,7 +85,7 @@ const Dropzone = (props) => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

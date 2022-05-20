@@ -22,18 +22,6 @@ const Nav = () => {
 
         <NavLink
           className={({ isActive }) => (isActive ? "active" : "inactive")}
-          to="/add-category"
-        >
-          Add Category
-        </NavLink>
-        <NavLink
-          className={({ isActive }) => (isActive ? "active" : "inactive")}
-          to="/create-post"
-        >
-          Create Post
-        </NavLink>
-        <NavLink
-          className={({ isActive }) => (isActive ? "active" : "inactive")}
           to="/category-list"
         >
           Categories

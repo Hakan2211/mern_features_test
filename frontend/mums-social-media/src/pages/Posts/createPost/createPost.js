@@ -71,83 +71,88 @@ const CreatePost = () => {
 
   return (
     <div className="create-post">
-      <h1>Create a post</h1>
-      <form className="create-post__form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="text__container">
-          <label>title</label>
-          <input
-            name="title"
-            ref={register}
-            {...register("title", {
-              required: "Please enter a title.",
-            })}
-            type="text"
+      <div className="create-post__container">
+        <form
+          className="create-post__container__form"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <h1>Create a post</h1>
+          <div className="create-post__container__form__text__container">
+            <label>title</label>
+            <input
+              name="title"
+              ref={register}
+              {...register("title", {
+                required: "Please enter a title.",
+              })}
+              type="text"
+              placeholder="Enter a title"
+            />
+          </div>
+          {errors.title && (
+            <span className="error-required-field">
+              This field is required.
+            </span>
+          )}
+          {/* //---------------------------------------------------------------- */}
+          {/* // Category Dropdown */}
+          {/* //---------------------------------------------------------------- */}
+          <SelectDropdown
+            name={"categories"}
+            label={"Category"}
+            control={control}
+            values={allCategories}
           />
-        </div>
-        {errors.title && (
-          <span className="error-required-field">This field is required.</span>
-        )}
-
-        {/* //---------------------------------------------------------------- */}
-        {/* // Category Dropdown */}
-        {/* //---------------------------------------------------------------- */}
-
-        <SelectDropdown
-          name={"categories"}
-          label={"Category"}
-          control={control}
-          values={allCategories}
-        />
-
-        <div className="text__container">
-          <label>description</label>
-          <input
-            name="description"
-            ref={register}
-            {...register("description", {
-              required: "Please enter your post description.",
-            })}
-            type="text"
+          <div className="create-post__container__form__textarea__container">
+            <label>description</label>
+            <input
+              name="description"
+              ref={register}
+              {...register("description", {
+                required: "Please enter your post description.",
+              })}
+              type="textarea"
+              placeholder="Write a description"
+            />
+          </div>
+          {errors.description && (
+            <span className="error-required-field">
+              This field is required.
+            </span>
+          )}
+          {/* /------------------------------------------------ */}
+          {/* /-------------------Image Upload----------------- */}
+          {/* /------------------------------------------------ */}
+          <Controller
+            name="image"
+            control={control}
+            render={({ field }) => {
+              return (
+                <Dropzone
+                  onChange={(files) => field.onChange(files?.[0])}
+                  name="file alt text"
+                  label="File Upload"
+                  files={field.value ? [field.value] : []}
+                />
+              );
+            }}
           />
-        </div>
-        {errors.description && (
-          <span className="error-required-field">This field is required.</span>
-        )}
-
-        {/* /------------------------------------------------ */}
-        {/* /-------------------Image Upload----------------- */}
-        {/* /------------------------------------------------ */}
-        <Controller
-          name="image"
-          control={control}
-          render={({ field }) => {
-            return (
-              <Dropzone
-                onChange={(files) => field.onChange(files?.[0])}
-                name="file alt text"
-                label="File Upload"
-                files={field.value ? [field.value] : []}
-              />
-            );
-          }}
-        />
-
-        {loading ? (
-          <button disabled className="create-post__button">
-            Loading...
-          </button>
-        ) : (
-          <button type="submit" className="create-post__button">
-            Create Post
-          </button>
-        )}
-
-        {appError || serverError ? (
-          <p>
-            {serverError} - {appError}
-          </p>
-        ) : null}
-      </form>
+          {loading ? (
+            <button disabled className="create-post__button">
+              Loading...
+            </button>
+          ) : (
+            <button type="submit" className="create-post__button">
+              Create Post
+            </button>
+          )}
+          {appError || serverError ? (
+            <p>
+              {serverError} - {appError}
+            </p>
+          ) : null}
+        </form>
+      </div>
     </div>
   );
 };

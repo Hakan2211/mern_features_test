@@ -8,7 +8,11 @@ import {
 import DateFormatter from "../../../utils/DateFormatter";
 import Spinner from "../../../utils/Spinner";
 import "./categoryList.scss";
-import { MdOutlineModeEditOutline, MdDelete } from "react-icons/md";
+import {
+  MdOutlineModeEditOutline,
+  MdDelete,
+  MdAddCircle,
+} from "react-icons/md";
 import "./categoryList.scss";
 
 const CategoryList = () => {
@@ -26,6 +30,11 @@ const CategoryList = () => {
 
   return (
     <div className="category">
+      <Link className="category__cta__add" to="/add-category">
+        {" "}
+        <MdAddCircle className="category__cta__add__icon" />
+        <span className="category__cta__add__text">Add Category</span>
+      </Link>
       {loading ? (
         <Spinner />
       ) : appError || serverError ? (

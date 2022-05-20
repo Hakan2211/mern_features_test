@@ -29,48 +29,55 @@ const AddCategory = () => {
   };
   return (
     <div className="add-category">
-      <h1>Add Category</h1>
-      <form className="add-category__form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="text__container">
-          <label>Add Category</label>
-          <input
-            name="title"
-            ref={register}
-            {...register("title", {
-              required: "Please enter a new category.",
-            })}
-            type="text"
-          />
-        </div>
-        {errors.title && (
-          <span className="error-required-field">This field is required.</span>
-        )}
-        {/* //---------------------------------------------------------------- */}
-        {/* //-----------------------------Dropzone---------------------------- */}
-        {/* //---------------------------------------------------------------- */}
+      <div className="add-category__container">
+        <form
+          className="add-category__container__form"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <h1>Add Category</h1>
+          <div className="add-category__container__form__text__container">
+            <label>Category Title</label>
+            <input
+              name="title"
+              ref={register}
+              {...register("title", {
+                required: "Please enter a new category.",
+              })}
+              type="text"
+            />
+          </div>
+          {errors.title && (
+            <span className="error-required-field">
+              This field is required.
+            </span>
+          )}
+          {/* //---------------------------------------------------------------- */}
+          {/* //-----------------------------Dropzone---------------------------- */}
+          {/* //---------------------------------------------------------------- */}
 
-        <Controller
-          name="image"
-          control={control}
-          render={({ field }) => {
-            return (
-              <Dropzone
-                onChange={(files) => field.onChange(files?.[0])}
-                name="file alt text"
-                label="File Upload"
-                files={field.value ? [field.value] : []}
-              />
-            );
-          }}
-        />
-        {loading ? (
-          <button disabled className="add-category__button">
-            Loading...
-          </button>
-        ) : (
-          <button className="add-category__button">Add Category</button>
-        )}
-      </form>
+          <Controller
+            name="image"
+            control={control}
+            render={({ field }) => {
+              return (
+                <Dropzone
+                  onChange={(files) => field.onChange(files?.[0])}
+                  name="file alt text"
+                  label="File Upload"
+                  files={field.value ? [field.value] : []}
+                />
+              );
+            }}
+          />
+          {loading ? (
+            <button disabled className="add-category__button">
+              Loading...
+            </button>
+          ) : (
+            <button className="add-category__button">Add Category</button>
+          )}
+        </form>
+      </div>
 
       {appError || serverError ? (
         <h2>

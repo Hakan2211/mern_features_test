@@ -1,0 +1,32 @@
+.dropzone {
+  margin-bottom: 2.4rem;
+
+  &__label {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  &__input {
+    height: 6rem;
+    width: 40rem;
+    border: 0.2rem dashed #ebe1c1;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &__icon {
+      font-size: 2.4rem;
+      color: #ebe1c1;
+      border: 0.1rem solid #ebe1c1;
+      border-radius: 2rem;
+      padding: 0.2rem;
+      margin-right: 1rem;
+    }
+
+    &__text {
+      font-size: 1.6rem;
+      color: #ebe1c1;
+    }
+  }
+}

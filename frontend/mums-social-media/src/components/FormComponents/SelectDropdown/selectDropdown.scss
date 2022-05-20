@@ -1,0 +1,11 @@
+.select {
+  width: 40rem;
+  height: 4.8rem;
+  font-size: 1.6rem;
+  border-radius: 1rem;
+  border: 0.2rem solid #ebe1c1;
+  margin-bottom: 2.4rem;
+  &:focus {
+    outline: none;
+  }
+}

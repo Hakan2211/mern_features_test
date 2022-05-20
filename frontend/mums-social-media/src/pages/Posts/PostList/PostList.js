@@ -3,7 +3,7 @@ import { ImHeart, ImBubble } from "react-icons/im";
 import { AiOutlineEye } from "react-icons/ai";
 import "./postList.scss";
 import { HiOutlineArrowRight } from "react-icons/hi";
-
+import { MdAddCircle } from "react-icons/md";
 import {
   fetchPostsAction,
   toggleLikePostAction,
@@ -23,7 +23,11 @@ const PostList = () => {
     dispatch(fetchPostsAction());
   }, [dispatch, likes]);
   return (
-    <>
+    <div className="post-list">
+      <Link className="post-list__cta__add" to="/create-post">
+        <MdAddCircle className="post-list__cta__add__icon" />
+        <span className="post-list__cta__add__text">Add Post</span>
+      </Link>
       {appError || serverError ? (
         <h1>Error</h1>
       ) : postLists?.length <= 0 ? (
@@ -111,7 +115,7 @@ const PostList = () => {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

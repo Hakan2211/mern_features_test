@@ -1,6 +1,23 @@
 .category {
   grid-row: 1 / 3;
   grid-column: 1 / -1;
+
+  &__cta__add {
+    padding: 2rem;
+    color: #ebe1c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    width: 20rem;
+    border: 0.1rem solid #ebe1c1;
+    border-radius: 1rem;
+    margin: 2rem 0 0 2rem;
+
+    &__icon {
+      margin-right: 1rem;
+    }
+  }
 }
 
 .category-list__container {
