@@ -36,7 +36,7 @@ const PostDetail = () => {
   }
 
   return (
-    <>
+    <div className="post__detail">
       {loading ? (
         <h1>Loading...</h1>
       ) : appError || serverError ? (
@@ -44,45 +44,61 @@ const PostDetail = () => {
           {serverError} - {appError}
         </h1>
       ) : (
-        <div className="post__detail">
-          <div className="post__detail__content">
-            <div className="post__detail__content__container">
+        <div className="post__detail__container">
+          <div className="post__detail__container__content">
+            <div className="post__detail__container__content__image-container">
               <img
                 src={postDetail?.image}
                 alt=""
-                className="post__detail__content__container__image"
+                className="post__detail__container__content__image-container__image"
               />
             </div>
-            <div className="post__detail__content__header">
-              <div className="post__detail__content__header__userinfo">
-                {postDetail?.user?.name}
-              </div>
-
-              {isCreatedBy ? (
-                <div className="post__detail__content__header__options">
-                  <Link to={`/update-post/${postDetail?.id}`}>
-                    <MdOutlineModeEditOutline />
-                  </Link>
-
-                  <MdDelete
-                    onClick={() => dispatch(deletePostAction(postDetail?.id))}
-                  />
+            <div className="post__detail__container__content__header__container">
+              <div className="post__detail__container__content__header__container__header">
+                <div className="post__detail__container__content__header__container__header__userinfo">
+                  <div className="post__detail__container__content__header__container__header__userinfo__picture">
+                    <img
+                      src={postDetail?.user?.profilePicture}
+                      alt="profilePicture"
+                    />
+                  </div>
+                  <div className="post__detail__container__content__header__container__header__userinfo__right">
+                    <div className="post__detail__container__content__header__container__header__userinfo__right__name">
+                      {postDetail?.user?.name}
+                    </div>
+                    <div className="post__detail__container__content__header__container__header__userinfo__right__date">
+                      <DateFormatter date={postDetail?.createdAt} />
+                    </div>
+                  </div>
                 </div>
-              ) : null}
+                <div className="post__detail__container__content__header__container__header__options">
+                  {isCreatedBy ? (
+                    <div className="post__detail__container__content__header__container__header__options__icons">
+                      <Link to={`/update-post/${postDetail?.id}`}>
+                        <MdOutlineModeEditOutline className="post__detail__container__content__header__container__header__options__icons__update-icon" />
+                      </Link>
 
-              <div className="post__detail__content__header__date">
-                <DateFormatter date={postDetail?.createdAt} />
+                      <MdDelete
+                        onClick={() =>
+                          dispatch(deletePostAction(postDetail?.id))
+                        }
+                        className="post__detail__container__content__header__container__header__options__icons__delete-icon"
+                      />
+                    </div>
+                  ) : null}
+                </div>
               </div>
-            </div>
-            <div className="post__detail__content__header__text">
-              <div className="post__detail__content__header__text__title">
-                {postDetail?.title}
-              </div>
-              <div className="post__detail__content__header__text__description">
-                {postDetail?.description}
+              <div className="post__detail__container__content__header__container__header__text">
+                <div className="post__detail__container__content__header__container__header__text__title">
+                  {postDetail?.title}
+                </div>
+                <div className="post__detail__container__content__header__container__header__text__description">
+                  {postDetail?.description}
+                </div>
               </div>
             </div>
           </div>
+
           <div className="post__detail__comment">
             {userAuth ? <AddComment postId={id} /> : null}
 
@@ -90,7 +106,7 @@ const PostDetail = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

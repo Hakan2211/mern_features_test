@@ -1,6 +1,6 @@
 .select {
   width: 40rem;
-  height: 4.8rem;
+  // height: 4.8rem;
   font-size: 1.6rem;
   border-radius: 1rem;
   border: 0.2rem solid #ebe1c1;
@@ -8,4 +8,14 @@
   &:focus {
     outline: none;
   }
+}
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.select-label {
+  position: absolute;
+  top: -2.5rem;
+  font-size: 1.6rem;
 }
