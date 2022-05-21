@@ -24,24 +24,27 @@ const AddComment = ({ postId }) => {
     dispatch(createCommentAction(payload));
   };
   return (
-    <div className="create-post">
-      <h1>Add Comment</h1>
-      <form className="create-post__form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="text__container">
-          <label>comment</label>
+    <div className="add__comment__container">
+      <form
+        className="add__comment__container__form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h1 className="add__comment__container__form__title">Add Comment</h1>
+        <div className="add__comment__container__form__text-container">
+          <label>Comment</label>
           <input
             name="description"
             ref={register}
             {...register("description", {
               required: "Please enter a comment.",
             })}
-            type="text"
+            type="textarea"
           />
         </div>
         {errors.title && (
           <span className="error-required-field">This field is required.</span>
         )}
-        <button type="submit" className="create-post__button">
+        <button type="submit" className="add__comment__container__form__button">
           Send Comment
         </button>
       </form>

@@ -26,7 +26,7 @@ const PostDetail = () => {
   const { commentCreated, commentDeleted } = comment;
 
   const isCreatedBy = postDetail?.user?._id === userAuth?._id;
-  console.log(isCreatedBy);
+
   useEffect(() => {
     dispatch(fetchPostDetailAction(id));
   }, [dispatch, id, commentCreated, commentDeleted]);
@@ -99,10 +99,13 @@ const PostDetail = () => {
             </div>
           </div>
 
-          <div className="post__detail__comment">
-            {userAuth ? <AddComment postId={id} /> : null}
-
-            <CommentList comments={postDetail?.comments} />
+          <div className="post__detail__container__comment">
+            <div className="post__detail__container__comment__form">
+              {userAuth ? <AddComment postId={id} /> : null}
+            </div>
+            <div className="post__detail__container__comment__list">
+              <CommentList comments={postDetail?.comments} />
+            </div>
           </div>
         </div>
       )}
