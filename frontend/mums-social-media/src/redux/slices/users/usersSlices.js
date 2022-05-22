@@ -595,6 +595,7 @@ const usersSlices = createSlice({
       state.loading = false;
       state.appError = action?.payload.message;
       state.serverError = action?.error.message;
+      state.unFollowed = undefined;
     });
     //--------------------------
     // Unfollow User

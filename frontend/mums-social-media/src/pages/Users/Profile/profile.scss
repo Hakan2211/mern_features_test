@@ -1,3 +1,205 @@
+.userprofile {
+  grid-row: 1 / -1;
+  grid-column: 1 / -1;
+  &__container {
+    height: 100vh;
+    padding: 2.4rem;
+
+    &__header {
+      display: flex;
+      height: 40%;
+
+      padding: 1.2rem;
+      align-items: center;
+      &__picture {
+        width: 35rem;
+        height: 35rem;
+        padding: 4rem;
+        border: 0.2rem solid #ebe1c1;
+        border-radius: 50%;
+        margin-right: 2.4rem;
+        position: relative;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        &__upload {
+          position: absolute;
+          bottom: 2rem;
+          right: 4rem;
+
+          width: 4rem;
+          height: 4rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 1rem;
+          border: 0.1rem solid #ebe1c1;
+          background-color: #042539;
+
+          &__icon {
+            font-size: 2.8rem;
+            color: #ebe1c1;
+          }
+        }
+        &__update {
+          position: absolute;
+          top: 2rem;
+          right: 4rem;
+
+          width: 4rem;
+          height: 4rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 1rem;
+          border: 0.1rem solid #ebe1c1;
+          background-color: #042539;
+          &__icon {
+            font-size: 2.8rem;
+            color: #ebe1c1;
+          }
+        }
+      }
+      &__info {
+        background-color: #55778b;
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 30rem;
+        border-radius: 1rem;
+
+        &__verification {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          width: 100%;
+          height: 25%;
+          align-items: center;
+          justify-content: space-evenly;
+          button {
+            background-color: transparent;
+            border-bottom-width: 0.1rem;
+            border-top: 0;
+            border-right: 0;
+            border-left: 0;
+            border-color: rgb(19, 45, 110);
+            border-style: solid;
+            cursor: pointer;
+            color: rgb(19, 45, 110);
+            padding: 0.1rem;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              color: rgb(25, 79, 154);
+              border-color: rgb(25, 79, 154);
+            }
+          }
+          &__info {
+            display: flex;
+            font-size: 1.4rem;
+            border: 0.1rem solid rgb(142, 32, 32);
+            border-radius: 1rem;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            height: 2rem;
+            &__container {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              &__icon-verified {
+                color: rgb(15, 80, 15);
+                margin-right: 0.8rem;
+              }
+              &__text-verified {
+                color: rgb(15, 80, 15);
+              }
+              &__icon-unverified {
+                color: rgb(142, 32, 32);
+                margin-right: 0.8rem;
+                display: flex;
+                align-items: center;
+              }
+              &__text-unverified {
+                color: rgb(142, 32, 32);
+              }
+            }
+          }
+        }
+        &__data {
+          height: 15%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          color: white;
+          &__name {
+            font-size: 1.6rem;
+            letter-spacing: 0.1rem;
+          }
+          &__joined {
+            font-size: 1.2rem;
+          }
+        }
+        &__follow-container {
+          width: 80%;
+          color: white;
+          cursor: pointer;
+          border: 0.1rem solid #ebe1c1;
+          border-radius: 1rem;
+          padding: 0.4rem;
+
+          &__unfollow {
+            display: flex;
+            color: white;
+            font-size: 1.4rem;
+          }
+          &__follow {
+            display: flex;
+            color: white;
+            font-size: 1.4rem;
+          }
+        }
+        &__message-container {
+          display: flex;
+          padding: 0.4rem;
+          cursor: pointer;
+          width: 80%;
+          font-size: 1.4rem;
+          color: white;
+          border: 0.1rem solid #ebe1c1;
+          border-radius: 1rem;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            color: #042539;
+            background-color: #fff;
+          }
+          &__icon {
+            margin-right: 1.2rem;
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+    &__posts {
+      &__title {
+        color: #fff;
+      }
+      &__container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+
+        grid-gap: 3rem;
+        margin-top: 3.2rem;
+      }
+    }
+  }
+}
+
 .profile-page__container {
   width: 80vw;
   height: 100vw;

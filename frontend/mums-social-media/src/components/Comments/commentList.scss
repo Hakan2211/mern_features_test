@@ -7,7 +7,7 @@
 
   &__container {
     width: 95%;
-    height: 100%;
+    height: 100vh;
     background-color: #55778b;
     border-radius: 1rem;
 
@@ -25,6 +25,7 @@
 
       margin: 1rem;
       padding: 0.8rem;
+
       &__userinfo {
         display: flex;
         background-color: #042539;

@@ -10,6 +10,15 @@ import DateFormmater from "../../../utils/DateFormatter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AccountVerification from "../../../components/Account Verification/AccountVerification";
 import AccountVerificationSuccess from "../../../components/Account Verification/AccountVerificationSuccess";
+import {
+  IoCheckmarkCircle,
+  IoCloseCircle,
+  IoMailOutline,
+} from "react-icons/io5";
+import { MdFileUpload } from "react-icons/md";
+import { MdOutlineModeEditOutline } from "react-icons/md";
+import { RiUserFollowLine, RiUserUnfollowLine } from "react-icons/ri";
+import PostCard from "../../Posts/PostList/PostCard/PostCard";
 
 const Profile = (props) => {
   const { id } = useParams();
@@ -17,7 +26,15 @@ const Profile = (props) => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.users);
-  const { profile, loading, appError, serverError, userAuth } = user;
+  const {
+    profile,
+    loading,
+    appError,
+    serverError,
+    userAuth,
+    followed,
+    unfollowed,
+  } = user;
 
   const account = useSelector((state) => state?.accountVerification);
   const {
@@ -35,13 +52,13 @@ const Profile = (props) => {
 
   useEffect(() => {
     dispatch(userProfileAction(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, followed, unfollowed]);
 
   const isLoginUser = userAuth?._id === profile?._id;
   console.log(isLoginUser);
   return (
-    <>
-      <div>
+    <div className="userprofile">
+      <div className="userprofile__container">
         {loading ? (
           <h1>Loading...</h1>
         ) : appError || serverError ? (
@@ -49,99 +66,138 @@ const Profile = (props) => {
             {serverError} - {appError}
           </h1>
         ) : (
-          <div className="profile-page__container">
-            <div className="profile-page__header">
-              <div className="profile-page__header__info">
-                <div className="profile-page__header__info__picture">
-                  <img src={profile?.profilePicture} alt="profile_image" />
-                </div>
-                <div className="profile-page__header__info__name">
-                  {profile?.name}
-                </div>
-                <div className="profile-page__header__info__joined">
-                  Joined: <DateFormmater date={profile?.createdAt} />
-                </div>
-                <div className="profile-page__header__info__followers">
-                  Followers:{profile?.followers.length}
-                </div>
-                <div className="profile-page__header__info__following">
-                  Following:{profile?.following.length}
-                </div>
-                {profile?.isAccountVerified ? (
-                  <span>Verified</span>
-                ) : (
-                  <span>Unverified</span>
-                )}
-                {/* /--------------------Account Verification---------------------------- */}
-                {!profile?.isAccountVerified && <AccountVerification />}
-                {verificationLoading ? (
-                  <h1>Loading...</h1>
-                ) : verificationAppError || verificationServerError ? (
-                  { verificationServerError } - { verificationAppError }
+          <>
+            <div className="userprofile__container__header">
+              <div className="userprofile__container__header__picture">
+                <img src={profile?.profilePicture} alt="profilePicture" />
+                {isLoginUser ? (
+                  <Link to={`/upload-photo/${profile?._id}`}>
+                    <div className="userprofile__container__header__picture__upload">
+                      <MdFileUpload className="userprofile__container__header__picture__upload__icon" />
+
+                      {/* <button className="userprofile__container__header__picture__upload__button">
+                        Upload Photo
+                      </button> */}
+                    </div>{" "}
+                  </Link>
+                ) : null}
+                {isLoginUser ? (
+                  <Link to={`/update-profile/${profile?._id}`}>
+                    <div className="userprofile__container__header__picture__update">
+                      <MdOutlineModeEditOutline className="userprofile__container__header__picture__update__icon" />
+
+                      {/* <button className="userprofile__container__header__picture__upload__button">
+                        Upload Photo
+                      </button> */}
+                    </div>
+                  </Link>
                 ) : null}
               </div>
-              <div className="profile-page__header__options">
-                <div className="profile-page__header__options__list">
-                  <ul className="profile-page__header__options__list__items">
-                    {!isLoginUser ? (
+              <div className="userprofile__container__header__info">
+                <div className="userprofile__container__header__info__verification">
+                  <div className="userprofile__container__header__info__verification__info">
+                    {profile?.isAccountVerified ? (
+                      <div className="userprofile__container__header__info__verification__info__container">
+                        <div className="userprofile__container__header__info__verification__info__container__icon-verified">
+                          <IoCheckmarkCircle />
+                        </div>
+                        <div className="userprofile__container__header__info__verification__info__container__text-verified">
+                          Verified
+                        </div>
+                      </div>
+                    ) : (
                       <>
-                        {" "}
-                        <li>
-                          <button
-                            onClick={() => dispatch(followUserAction(id))}
-                          >
-                            Follow
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            onClick={() => dispatch(unfollowUserAction(id))}
-                          >
-                            Unfollow
-                          </button>
-                        </li>
+                        <div className="userprofile__container__header__info__verification__info__container__icon-unverified">
+                          <IoCloseCircle />
+                        </div>
+                        <div className="userprofile__container__header__info__verification__info__container__text-unverified">
+                          Unverified
+                        </div>
                       </>
-                    ) : null}
-                    <li>
-                      <button onClick={sendMailHandler}>Send Message</button>
-                    </li>
-                    <li>
-                      <Link to={`/upload-photo/${profile?._id}`}>
-                        <button>Upload Photo</button>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={`/update-profile/${profile?._id}`}>
-                        <button>Update Profile</button>
-                      </Link>
-                    </li>
-                  </ul>
+                    )}
+                  </div>
+                  {!profile?.isAccountVerified && isLoginUser ? (
+                    <div className="userprofile__container__header__info__verification__button__container">
+                      <button className="userprofile__container__header__info__verification__button">
+                        Verify your Account
+                      </button>
+                    </div>
+                  ) : null}
+                </div>
+                <div className="userprofile__container__header__info__data">
+                  <div className="userprofile__container__header__info__data__name">
+                    {profile?.name}
+                  </div>
+                  <div className="userprofile__container__header__info__data__joined">
+                    Joined since: <DateFormmater date={profile?.createdAt} />
+                  </div>
+                </div>
+                <div className="userprofile__container__header__info__follow-container">
+                  {!isLoginUser && profile?.isFollowing ? (
+                    <div
+                      classname="userprofile__container__header__info__follow-container__unfollow"
+                      onClick={() => dispatch(unfollowUserAction(id))}
+                    >
+                      <div className="userprofile__container__header__info__follow-container__unfollow__icon">
+                        <RiUserUnfollowLine />
+                      </div>
+
+                      <div className="userprofile__container__header__info__follow-container__unfollow__text">
+                        Unfollow
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      classname="userprofile__container__header__info__follow-container__follow"
+                      onClick={() => dispatch(followUserAction(id))}
+                    >
+                      <div className="userprofile__container__header__info__follow-container__follow__icon">
+                        <RiUserFollowLine />
+                      </div>
+
+                      <div className="userprofile__container__header__info__follow-container__follow__text">
+                        Follow
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="userprofile__container__header__info__message-container">
+                  <div className="userprofile__container__header__info__message-container__icon">
+                    <IoMailOutline />
+                  </div>
+                  <div
+                    className="userprofile__container__header__info__message-container__button"
+                    onClick={sendMailHandler}
+                  >
+                    <div className="userprofile__container__header__info__message-container__button__text">
+                      Send Message
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="profile-page__main">
-              <div className="profile-page__main__posts">
-                <h1>
-                  {profile?.name}{" "}
-                  {profile?.posts.length === 1
-                    ? "Post"
-                    : profile?.posts.length === 0
-                    ? "No Post was found"
-                    : "Posts"}
-                </h1>
-                {profile?.posts.map((post) => {
-                  return (
-                    <div className="profile-post__image__container">
-                      <img src={post?.image} alt="" />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+          </>
         )}
+        <div className="userprofile__container__posts">
+          <h1 className="userprofile__container__posts__title">
+            {profile?.posts.length === 1
+              ? "Post"
+              : profile?.posts.length === 0
+              ? "No Post was found"
+              : "My Gallery"}
+          </h1>
+          <div className="userprofile__container__posts__container">
+            {profile?.posts.map((post) => {
+              return <PostCard post={post} />;
+            })}
+          </div>
+        </div>
       </div>
-    </>
+      <div className="userprofile__followers__container">
+        <div className="userprofile__followers__container__followers"></div>
+        <div className="userprofile__followers__container__following"></div>
+      </div>
+    </div>
   );
 };
 
