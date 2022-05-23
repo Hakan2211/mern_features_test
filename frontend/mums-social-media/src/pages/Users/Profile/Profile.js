@@ -15,10 +15,16 @@ import {
   IoCloseCircle,
   IoMailOutline,
 } from "react-icons/io5";
+
 import { MdFileUpload } from "react-icons/md";
 import { MdOutlineModeEditOutline } from "react-icons/md";
-import { RiUserFollowLine, RiUserUnfollowLine } from "react-icons/ri";
+import {
+  RiUserFollowLine,
+  RiUserUnfollowLine,
+  RiLockPasswordLine,
+} from "react-icons/ri";
 import PostCard from "../../Posts/PostList/PostCard/PostCard";
+import { accountVerificationSendToken } from "../../../redux/slices/accountVerification/accountVerificationSlices";
 
 const Profile = (props) => {
   const { id } = useParams();
@@ -55,7 +61,7 @@ const Profile = (props) => {
   }, [dispatch, id, followed, unfollowed]);
 
   const isLoginUser = userAuth?._id === profile?._id;
-  console.log(isLoginUser);
+
   return (
     <div className="userprofile">
       <div className="userprofile__container">
@@ -97,28 +103,31 @@ const Profile = (props) => {
                 <div className="userprofile__container__header__info__verification">
                   <div className="userprofile__container__header__info__verification__info">
                     {profile?.isAccountVerified ? (
-                      <div className="userprofile__container__header__info__verification__info__container">
-                        <div className="userprofile__container__header__info__verification__info__container__icon-verified">
+                      <div className="userprofile__container__header__info__verification__info__container__verified">
+                        <div className="userprofile__container__header__info__verification__info__container__verified__icon-verified">
                           <IoCheckmarkCircle />
                         </div>
-                        <div className="userprofile__container__header__info__verification__info__container__text-verified">
+                        <div className="userprofile__container__header__info__verification__info__container__verified__text-verified">
                           Verified
                         </div>
                       </div>
                     ) : (
-                      <>
-                        <div className="userprofile__container__header__info__verification__info__container__icon-unverified">
+                      <div className="userprofile__container__header__info__verification__info__container__unverified">
+                        <div className="userprofile__container__header__info__verification__info__container__unverified__icon-unverified">
                           <IoCloseCircle />
                         </div>
-                        <div className="userprofile__container__header__info__verification__info__container__text-unverified">
+                        <div className="userprofile__container__header__info__verification__info__container__unverified__text-unverified">
                           Unverified
                         </div>
-                      </>
+                      </div>
                     )}
                   </div>
                   {!profile?.isAccountVerified && isLoginUser ? (
                     <div className="userprofile__container__header__info__verification__button__container">
-                      <button className="userprofile__container__header__info__verification__button">
+                      <button
+                        className="userprofile__container__header__info__verification__button"
+                        onClick={() => dispatch(accountVerificationSendToken())}
+                      >
                         Verify your Account
                       </button>
                     </div>
@@ -162,18 +171,27 @@ const Profile = (props) => {
                   )}
                 </div>
                 <div className="userprofile__container__header__info__message-container">
-                  <div className="userprofile__container__header__info__message-container__icon">
-                    <IoMailOutline />
-                  </div>
                   <div
                     className="userprofile__container__header__info__message-container__button"
                     onClick={sendMailHandler}
                   >
+                    <IoMailOutline className="userprofile__container__header__info__message-container__icon" />
+
                     <div className="userprofile__container__header__info__message-container__button__text">
                       Send Message
                     </div>
                   </div>
                 </div>
+                {isLoginUser ? (
+                  <Link to="update-passsword">
+                    <div className="userprofile__container__header__info__update-password-container">
+                      <div className="userprofile__container__header__info__message-container__icon">
+                        <RiLockPasswordLine />
+                      </div>
+                      Update Password
+                    </div>
+                  </Link>
+                ) : null}
               </div>
             </div>
           </>
@@ -181,14 +199,14 @@ const Profile = (props) => {
         <div className="userprofile__container__posts">
           <h1 className="userprofile__container__posts__title">
             {profile?.posts.length === 1
-              ? "Post"
+              ? "My Gallery"
               : profile?.posts.length === 0
               ? "No Post was found"
               : "My Gallery"}
           </h1>
           <div className="userprofile__container__posts__container">
             {profile?.posts.map((post) => {
-              return <PostCard post={post} />;
+              return <PostCard key={post?._id} post={post} />;
             })}
           </div>
         </div>

@@ -23,6 +23,7 @@
         img {
           width: 100%;
           height: 100%;
+          border-radius: 50%;
         }
         &__upload {
           position: absolute;
@@ -99,25 +100,36 @@
           }
           &__info {
             display: flex;
-            font-size: 1.4rem;
-            border: 0.1rem solid rgb(142, 32, 32);
-            border-radius: 1rem;
+            font-size: 1.8rem;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+
             height: 2rem;
-            &__container {
+            &__container__verified {
               display: flex;
               align-items: center;
               justify-content: center;
+              border: 0.1rem solid rgb(15, 80, 15);
+              border-radius: 1rem;
+              padding: 0.6rem;
 
               &__icon-verified {
                 color: rgb(15, 80, 15);
                 margin-right: 0.8rem;
+                display: flex;
+                align-items: center;
               }
               &__text-verified {
                 color: rgb(15, 80, 15);
               }
+            }
+            &__container__unverified {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border: 0.1rem solid rgb(142, 32, 32);
+              border-radius: 1rem;
+              padding: 0.6rem;
               &__icon-unverified {
                 color: rgb(142, 32, 32);
                 margin-right: 0.8rem;
@@ -164,11 +176,37 @@
           }
         }
         &__message-container {
-          display: flex;
           padding: 0.4rem;
           cursor: pointer;
           width: 80%;
           font-size: 1.4rem;
+          color: white;
+          border: 0.1rem solid #ebe1c1;
+          border-radius: 1rem;
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            color: #042539;
+            background-color: #fff;
+          }
+          &__icon {
+            margin-right: 1.2rem;
+            display: flex;
+            align-items: center;
+          }
+
+          &__button {
+            display: flex;
+            align-items: center;
+          }
+        }
+        &__update-password-container {
+          display: flex;
+          display: flex;
+          padding: 0.4rem;
+          cursor: pointer;
+          width: 100%;
+          font-size: 1.2rem;
           color: white;
           border: 0.1rem solid #ebe1c1;
           border-radius: 1rem;
@@ -197,57 +235,5 @@
         margin-top: 3.2rem;
       }
     }
-  }
-}
-
-.profile-page__container {
-  width: 80vw;
-  height: 100vw;
-  background-color: blue;
-  color: white;
-
-  .profile-page__header {
-    display: flex;
-    justify-content: space-evenly;
-    &__info {
-      display: flex;
-      flex-direction: column;
-      &__picture {
-        width: 10rem;
-        height: 10rem;
-        border-radius: 10rem;
-        img {
-          width: 100%;
-          height: 100%;
-          border-radius: 10rem;
-        }
-      }
-    }
-  }
-  .profile-page__header__options {
-    width: 30rem;
-    &__list__items {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-}
-
-.profile-page__main {
-  width: 100vw;
-  height: 400rem;
-  &__posts {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.profile-post__image__container {
-  width: 40rem;
-  height: 80rem;
-
-  img {
-    width: 100%;
-    height: 100%;
   }
 }

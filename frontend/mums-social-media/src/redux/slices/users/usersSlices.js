@@ -78,7 +78,11 @@ export const userProfileAction = createAsyncThunk(
       },
     };
     try {
-      const { data } = await baseAPI.get(`/users/profile/${id}`, config);
+      const { data } = await baseAPI.get(
+        `/users/profile/${id}`,
+
+        config
+      );
       //----------------------------------------------------
       //Dispatch Action to redirect after creating Category
       //----------------------------------------------------
