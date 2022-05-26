@@ -7,9 +7,11 @@ const PostSchema = new mongoose.Schema(
       //required: [true, "Post title is required"],
       trim: true,
     },
+
     category: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+      type: String,
+      //type: mongoose.Schema.Types.ObjectId,
+      //ref: "Category",
       //required: [true, "Post category is required"],
       default: "All",
     },
