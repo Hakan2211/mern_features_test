@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import {
   fetchCategoriesAction,
   deleteCategoryAction,
@@ -14,6 +14,7 @@ import {
   MdAddCircle,
 } from "react-icons/md";
 import "./categoryList.scss";
+import { fetchPostsAction } from "../../../redux/slices/posts/postSlices";
 
 const CategoryList = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const CategoryList = () => {
     categories;
   useEffect(() => {
     dispatch(fetchCategoriesAction());
+    dispatch(fetchPostsAction());
     if (isDeleted) {
       navigate("/category-list", { replace: true });
     }
@@ -76,10 +78,12 @@ const CategoryList = () => {
                   </button>
                 </div>
               </div>
+              <Link to={`/category/${category._id}`}>
+                <div className="category-list__card__image-container">
+                  <img src={category?.image} alt="category_image" />
+                </div>
+              </Link>
 
-              <div className="category-list__card__image-container">
-                <img src={category?.image} alt="category_image" />
-              </div>
               <div className="category-list__card__title">
                 <h2>{category.title}</h2>
               </div>

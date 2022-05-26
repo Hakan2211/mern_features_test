@@ -23,6 +23,7 @@ import Logout from "./pages/Auth/Logout/Logout";
 import AddCategory from "./pages/Categories/addCategory/AddCategory";
 import CategoryList from "./pages/Categories/CategoryList/CategoryList";
 import UpdateCategory from "./pages/Categories/updateCategory/UpdateCategory";
+import CategoryDetail from "./pages/Categories/CategoryList/CategoryDetail/CategoryDetail";
 //------------------------------
 //ProtectedRoutes
 //------------------------------
@@ -99,6 +100,7 @@ const App = () => {
           <Route path="/posts" element={<PostList />} />
           <Route path="/posts/:id" element={<PostDetail />} />
           <Route path="/category-list" element={<CategoryList />} />
+          <Route path="/category/:id" element={<CategoryDetail />} />
           <Route path="/update-category/:id" element={<UpdateCategory />} />
         </Routes>
       </main>

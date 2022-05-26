@@ -22,11 +22,11 @@ router
     categoryImgResize,
     createCategory
   )
-  .get(authenticateUser, fetchCategories);
+  .get(fetchCategories);
 
 router
   .route("/:id")
-  .get(authenticateUser, fetchCategory)
+  .get(fetchCategory)
   .patch(authenticateUser, updateCategory)
   .delete(authenticateUser, deleteCategory);
 
