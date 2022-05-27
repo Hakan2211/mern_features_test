@@ -32,6 +32,7 @@ const fetchCategories = async (req, res) => {
     const categories = await Category.find({})
       .populate("user")
       .sort("-createdAt");
+    //.populate("post");
     res.status(StatusCodes.OK).json(categories);
   } catch (error) {
     res.json(error);

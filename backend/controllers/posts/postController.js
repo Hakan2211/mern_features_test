@@ -52,6 +52,7 @@ const createPost = async (req, res) => {
 const fetchPosts = async (req, res) => {
   try {
     const posts = await Post.find({}).populate("user").populate("comments");
+    //.populate("category");
     res.status(StatusCodes.OK).json(posts);
   } catch (error) {}
 };
