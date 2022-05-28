@@ -206,7 +206,13 @@ const Profile = (props) => {
           </h1>
           <div className="userprofile__container__posts__container">
             {profile?.posts.map((post) => {
-              return <PostCard key={post?._id} post={post} />;
+              return (
+                <PostCard
+                  profilePicture={profile?.profilePicture}
+                  key={post?._id}
+                  post={post}
+                />
+              );
             })}
           </div>
         </div>

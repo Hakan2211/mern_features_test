@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { toggleLikePostAction } from "../../../../redux/slices/posts/postSlices";
 import DateFormatter from "../../../../utils/DateFormatter";
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, profilePicture }) => {
   const dispatch = useDispatch();
 
   return (
@@ -19,7 +19,7 @@ const PostCard = ({ post }) => {
           <div className="post-list__card__header__userinfo__image-container">
             <Link to={`/profile/${post?.user?._id}`}>
               <img
-                src={post?.user?.profilePicture}
+                src={profilePicture}
                 className="post-list__card__header__userinfo__image-container__image"
                 alt="post user"
               />

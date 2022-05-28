@@ -19,6 +19,7 @@ export const createPostAction = createAsyncThunk(
   "posts/create",
   async (post, { rejectWithValue, getState, dispatch }) => {
     const users = getState()?.users;
+
     const { userAuth } = users;
     const config = {
       headers: {

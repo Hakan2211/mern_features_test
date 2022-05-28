@@ -32,13 +32,14 @@ const AddComment = ({ postId }) => {
         <h1 className="add__comment__container__form__title">Add Comment</h1>
         <div className="add__comment__container__form__text-container">
           <label>Comment</label>
-          <input
+          <textarea
             name="description"
             ref={register}
             {...register("description", {
               required: "Please enter a comment.",
             })}
-            type="textarea"
+            cols="40"
+            rows="5"
           />
         </div>
         {errors.title && (

@@ -29,7 +29,11 @@ const PostList = () => {
       ) : (
         <div className="post-list__container">
           {postLists?.map((post) => (
-            <PostCard key={post?._id} post={post} />
+            <PostCard
+              profilePicture={post?.user?.profilePicture}
+              key={post?._id}
+              post={post}
+            />
           ))}
         </div>
       )}
