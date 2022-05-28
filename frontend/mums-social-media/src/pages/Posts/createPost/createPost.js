@@ -105,13 +105,12 @@ const CreatePost = () => {
           />
           <div className="create-post__container__form__textarea__container">
             <label>description</label>
-            <input
+            <textarea
               name="description"
               ref={register}
               {...register("description", {
                 required: "Please enter your post description.",
               })}
-              type="textarea"
               placeholder="Write a description"
             />
           </div>

@@ -17,6 +17,7 @@ import {
 } from "react-icons/io5";
 
 import { MdFileUpload } from "react-icons/md";
+import { MdAddCircle } from "react-icons/md";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import {
   RiUserFollowLine,
@@ -204,6 +205,15 @@ const Profile = (props) => {
               ? "No Post was found"
               : "My Gallery"}
           </h1>
+          {isLoginUser ? (
+            <Link
+              className="userprofile__container__posts__button"
+              to="/create-post"
+            >
+              <MdAddCircle className="userprofile__container__posts__button__icon" />
+              <span className="post-list__cta__add__text">Add Post</span>
+            </Link>
+          ) : null}
           <div className="userprofile__container__posts__container">
             {profile?.posts.map((post) => {
               return (

@@ -21,7 +21,11 @@ const CategoryDetail = () => {
       {filteredPostByCategoryTitle?.map((post) => {
         return (
           <div className="postCard">
-            <PostCard key={post._id} post={post} />
+            <PostCard
+              profilePicture={post?.user?.profilePicture}
+              key={post._id}
+              post={post}
+            />
           </div>
         );
       })}

@@ -59,7 +59,7 @@ const PostCard = ({ post, profilePicture }) => {
         </div>
 
         <p className="post-list__card__description__subtext">
-          {post?.description}
+          {post?.description.slice(0, 80)} ...
         </p>
         <div className="post-list__card__description__link">
           <Link
@@ -75,7 +75,13 @@ const PostCard = ({ post, profilePicture }) => {
       <div className="post-list__card__info">
         <div className="post-list__card__info__comments">
           <ImBubble className="post-list__card__info__comments__icon" />
-          <span>200 Comments</span>
+          {post?.comments.length === 0 ? (
+            <span>Noch keine Kommentare</span>
+          ) : post?.comments.length === 1 ? (
+            <span>1 Kommentar</span>
+          ) : (
+            <span>{post?.comments.length} Kommentare</span>
+          )}
         </div>
 
         <div className="post-list__card__info__views">

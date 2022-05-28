@@ -7,7 +7,7 @@
 
   &__container {
     width: 95%;
-    height: 100vh;
+    //height: 100vh;
     background-color: #55778b;
     border-radius: 1rem;
 
@@ -43,6 +43,7 @@
           img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
           }
         }
         &__right {
@@ -86,6 +87,7 @@
           font-size: 1.6rem;
           color: white;
           letter-spacing: 0.1rem;
+          //word-break: break-all;
         }
       }
     }
