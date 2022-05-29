@@ -1,29 +1,39 @@
 .landing {
   grid-area: Main;
+  width: 100%;
+  height: auto;
 
   &__container {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 
     &__video {
-      height: 100vh;
-      width: 100vw;
+      height: auto;
+      width: 100%;
       z-index: -10;
       object-fit: cover;
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
+      @media (min-aspect-ratio: 16/9) {
+        width: 100%;
+        height: auto;
+      }
+      @media (max-aspect-ratio: 16/9) {
+        width: auto;
+        height: 100%;
+      }
     }
     &__content {
       color: #fff;
       //background-color: yellow;
       width: 100%;
-      height: 100%;
+      height: 85%;
       display: flex;
 
       &__text {
         //background-color: blue;
-        height: 100%;
+        //height: 100%;
         width: 50%;
         align-items: center;
         justify-content: center;
@@ -37,6 +47,19 @@
           width: 100%;
           padding: 3.2rem;
           text-align: center;
+          font-family: futura-pt, sans-serif;
+          font-weight: 400;
+          font-style: normal;
+
+          &__title {
+            text-transform: uppercase;
+            letter-spacing: 0.5rem;
+            font-size: 6rem;
+            margin-bottom: 3rem;
+            font-family: futura-pt-condensed, sans-serif;
+            font-weight: 500;
+            font-style: normal;
+          }
         }
       }
       &__images {
@@ -45,6 +68,7 @@
         width: 50%;
         padding: 1.6rem;
         position: relative;
+        //background-color: yellow;
         &__container {
           display: flex;
           align-items: center;
@@ -55,8 +79,8 @@
 
           &__image {
             //background-color: aqua;
-            width: 40rem;
-            height: 30rem;
+            width: 50rem;
+            height: 70rem;
             border-radius: 1rem;
 
             &__image1 {
