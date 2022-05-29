@@ -54,11 +54,30 @@
           &__title {
             text-transform: uppercase;
             letter-spacing: 0.5rem;
-            font-size: 6rem;
+            font-size: 8rem;
             margin-bottom: 3rem;
             font-family: futura-pt-condensed, sans-serif;
             font-weight: 500;
             font-style: normal;
+          }
+        }
+        &__register-cta {
+          width: 30rem;
+          height: 6rem;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 0.2rem solid #ebe1c1;
+          border-radius: 1rem;
+          background-color: rgba(255, 255, 255, 0.2);
+          transition: all 0.3s ease-in-out;
+          cursor: pointer;
+          a {
+            color: #fff;
+          }
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.4);
           }
         }
       }
@@ -82,6 +101,7 @@
             width: 50rem;
             height: 70rem;
             border-radius: 1rem;
+            //background-color: orange;
 
             &__image1 {
               position: absolute;

@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./landingPage.scss";
 import Video from "../../assets/video/background_landing.mp4";
 import FundaImage from "../../assets/img/LandingPage_Funda.png";
+import { Link } from "react-router-dom";
+import gsap from "gsap";
 
 const LandingPage = () => {
   // const [video, setVideo] = useState(null);
@@ -9,6 +11,33 @@ const LandingPage = () => {
   // useEffect(() => {
   //   setVideo(Video);
   // }, []);
+  let text = useRef(null);
+  let image = useRef(null);
+  const tl = new gsap.timeline();
+  useEffect(() => {
+    const textTitle = text.children[0].children[0];
+    const textHeadFirst = textTitle.nextSibling;
+    const textHeadSecond = textHeadFirst.nextSibling;
+    const textHeadThird = textHeadSecond.nextSibling;
+    const registerCTA = text.children[1];
+
+    //Image Animtaion
+    tl.from(image, 1.2, { x: 100, ease: gsap.power2 }, "Start").from(
+      image.firstElementChild,
+      2,
+      { scale: 0.8, ease: gsap.power2 },
+      0.1
+    );
+
+    tl.staggerFrom(
+      [textTitle, textHeadFirst, textHeadSecond, textHeadThird],
+      1,
+      { y: 600, ease: gsap.power3, delay: 0.8 },
+      0.15,
+      "Start"
+    ).from(registerCTA, 1, { y: 300, opacity: 0, ease: gsap.power2 }, 1.2);
+  }, [tl]);
+
   return (
     <div className="landing">
       <div className="landing__container">
@@ -18,7 +47,10 @@ const LandingPage = () => {
           </video>
         </div>
         <div className="landing__container__content">
-          <div className="landing__container__content__text">
+          <div
+            className="landing__container__content__text"
+            ref={(el) => (text = el)}
+          >
             <div className="landing__container__content__text__main">
               <div className="landing__container__content__text__main__title">
                 Fundavoll
@@ -33,10 +65,16 @@ const LandingPage = () => {
                 Zeig, was Du machst.
               </div>
             </div>
+            <div className="landing__container__content__text__register-cta">
+              <Link to={"/register"}>Registrierung</Link>
+            </div>
           </div>
           <div className="landing__container__content__images">
             <div className="landing__container__content__images__container">
-              <div className="landing__container__content__images__container__image">
+              <div
+                className="landing__container__content__images__container__image"
+                ref={(el) => (image = el)}
+              >
                 <img src={FundaImage} alt="funda" />
               </div>
 
