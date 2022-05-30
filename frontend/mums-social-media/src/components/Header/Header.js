@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./header.scss";
-import logo from "../../assets/img/132_generated.jpg";
+import logo from "../../assets/img/fundavoll_logo.svg";
 import { NavLink } from "react-router-dom";
 import Nav from "../Navigation/Nav";
 import Auth from "../Navigation/Auth/Auth";
