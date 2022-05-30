@@ -11,7 +11,6 @@ const PostList = () => {
   const post = useSelector((state) => state?.posts);
 
   const { postLists, loading, appError, serverError, likes } = post;
-  console.log(post, "post for like");
 
   useEffect(() => {
     dispatch(fetchPostsAction());
@@ -33,6 +32,7 @@ const PostList = () => {
               profilePicture={post?.user?.profilePicture}
               key={post?._id}
               post={post}
+              comments={post?.comments}
             />
           ))}
         </div>

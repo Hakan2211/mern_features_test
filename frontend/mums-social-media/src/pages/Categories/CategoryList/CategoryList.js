@@ -33,7 +33,6 @@ const CategoryList = () => {
   return (
     <div className="category">
       <Link className="category__cta__add" to="/add-category">
-        {" "}
         <MdAddCircle className="category__cta__add__icon" />
         <span className="category__cta__add__text">Add Category</span>
       </Link>

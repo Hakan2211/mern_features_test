@@ -43,6 +43,10 @@ const Profile = (props) => {
     unfollowed,
   } = user;
 
+  const post = useSelector((state) => state?.posts);
+
+  const { likes } = post;
+
   const account = useSelector((state) => state?.accountVerification);
   const {
     loading: verificationLoading,
@@ -59,7 +63,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     dispatch(userProfileAction(id));
-  }, [dispatch, id, followed, unfollowed]);
+  }, [dispatch, id, followed, unfollowed, likes]);
 
   const isLoginUser = userAuth?._id === profile?._id;
 
@@ -221,6 +225,7 @@ const Profile = (props) => {
                   profilePicture={profile?.profilePicture}
                   key={post?._id}
                   post={post}
+                  comments={post?.comments}
                 />
               );
             })}

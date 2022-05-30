@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { toggleLikePostAction } from "../../../../redux/slices/posts/postSlices";
 import DateFormatter from "../../../../utils/DateFormatter";
 
-const PostCard = ({ post, profilePicture }) => {
+const PostCard = ({ post, profilePicture, comments }) => {
   const dispatch = useDispatch();
 
   return (
@@ -75,12 +75,12 @@ const PostCard = ({ post, profilePicture }) => {
       <div className="post-list__card__info">
         <div className="post-list__card__info__comments">
           <ImBubble className="post-list__card__info__comments__icon" />
-          {post?.comments?.length === 0 ? (
+          {comments?.length === 0 ? (
             <span>Noch keine Kommentare</span>
-          ) : post?.comments?.length === 1 ? (
+          ) : comments?.length === 1 ? (
             <span>1 Kommentar</span>
           ) : (
-            <span>{post?.comments?.length} Kommentare</span>
+            <span>{comments?.length} Kommentare</span>
           )}
         </div>
 

@@ -38,6 +38,10 @@
           border-radius: 1rem;
           border: 0.1rem solid #ebe1c1;
           background-color: #042539;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            background-color: #55778b;
+          }
 
           &__icon {
             font-size: 2.8rem;
@@ -57,6 +61,10 @@
           border-radius: 1rem;
           border: 0.1rem solid #ebe1c1;
           background-color: #042539;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            background-color: #55778b;
+          }
           &__icon {
             font-size: 2.8rem;
             color: #ebe1c1;
@@ -238,6 +246,10 @@
         border: 0.1rem solid #ebe1c1;
         border-radius: 1rem;
         margin: 2rem 0 0 0rem;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: #55778b;
+        }
         &__icon {
           margin-right: 1rem;
         }

@@ -13,6 +13,10 @@
     border: 0.1rem solid #ebe1c1;
     border-radius: 1rem;
     margin: 2rem 0 0 2rem;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: #55778b;
+    }
 
     &__icon {
       margin-right: 1rem;
@@ -132,5 +136,6 @@
     border-radius: 1rem;
     padding: 1rem;
     cursor: pointer;
+    text-transform: capitalize;
   }
 }
