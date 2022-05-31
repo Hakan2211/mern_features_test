@@ -15,22 +15,16 @@ const Nav = () => {
 
         <NavLink
           className={({ isActive }) => (isActive ? "active" : "inactive")}
-          to="/gallery"
+          to="/posts"
         >
-          Gallery
+          Gallerie
         </NavLink>
 
         <NavLink
           className={({ isActive }) => (isActive ? "active" : "inactive")}
           to="/category-list"
         >
-          Categories
-        </NavLink>
-        <NavLink
-          className={({ isActive }) => (isActive ? "active" : "inactive")}
-          to="/posts"
-        >
-          Posts
+          Kategorie
         </NavLink>
       </div>
     </div>

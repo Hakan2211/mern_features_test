@@ -26,7 +26,6 @@
 .post-list__container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
-  //grid-auto-flow: column;
   grid-gap: 3rem;
   margin-top: 3.2rem;
   padding: 2rem;

@@ -175,18 +175,21 @@ const Profile = (props) => {
                     </div>
                   )}
                 </div>
-                <div className="userprofile__container__header__info__message-container">
-                  <div
-                    className="userprofile__container__header__info__message-container__button"
-                    onClick={sendMailHandler}
-                  >
-                    <IoMailOutline className="userprofile__container__header__info__message-container__icon" />
+                {!isLoginUser ? (
+                  <div className="userprofile__container__header__info__message-container">
+                    <div
+                      className="userprofile__container__header__info__message-container__button"
+                      onClick={sendMailHandler}
+                    >
+                      <IoMailOutline className="userprofile__container__header__info__message-container__icon" />
 
-                    <div className="userprofile__container__header__info__message-container__button__text">
-                      Send Message
+                      <div className="userprofile__container__header__info__message-container__button__text">
+                        Send Message
+                      </div>
                     </div>
                   </div>
-                </div>
+                ) : null}
+
                 {isLoginUser ? (
                   <Link to="update-passsword">
                     <div className="userprofile__container__header__info__update-password-container">

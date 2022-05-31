@@ -5,6 +5,7 @@ import logo from "../../assets/img/fundavoll_logo.svg";
 import { NavLink } from "react-router-dom";
 import Nav from "../Navigation/Nav";
 import Auth from "../Navigation/Auth/Auth";
+import MobileNavigation from "../Navigation/MobileNavigation/MobileNavigation";
 
 const Header = () => {
   return (
@@ -16,6 +17,7 @@ const Header = () => {
       </div>
       <Nav />
       <Auth />
+      <MobileNavigation />
     </div>
   );
 };

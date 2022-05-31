@@ -22,6 +22,12 @@ const CategoryList = () => {
   const categories = useSelector((state) => state?.categories);
   const { categoryList, loading, appError, serverError, isDeleted } =
     categories;
+
+  const user = useSelector((state) => state.users);
+  const { userAuth } = user;
+
+  const isLoginUser = userAuth?._id;
+
   useEffect(() => {
     dispatch(fetchCategoriesAction());
     dispatch(fetchPostsAction());
@@ -66,16 +72,20 @@ const CategoryList = () => {
                     <DateFormatter date={category.createdAt} />
                   </div>
                 </div>
-                <div className="category-list__card__header__userinfo__options">
-                  <Link to={`/update-category/${category?._id}`}>
-                    <MdOutlineModeEditOutline className="category-list__card__header__userinfo__options__update-icon" />
-                  </Link>
-                  <button
-                    onClick={() => dispatch(deleteCategoryAction(category._id))}
-                  >
-                    <MdDelete className="category-list__card__header__userinfo__options__delete-icon" />{" "}
-                  </button>
-                </div>
+                {isLoginUser === category?.user?._id ? (
+                  <div className="category-list__card__header__userinfo__options">
+                    <Link to={`/update-category/${category?._id}`}>
+                      <MdOutlineModeEditOutline className="category-list__card__header__userinfo__options__update-icon" />
+                    </Link>
+                    <button
+                      onClick={() =>
+                        dispatch(deleteCategoryAction(category._id))
+                      }
+                    >
+                      <MdDelete className="category-list__card__header__userinfo__options__delete-icon" />{" "}
+                    </button>
+                  </div>
+                ) : null}
               </div>
               <Link to={`/category/${category._id}`}>
                 <div className="category-list__card__image-container">

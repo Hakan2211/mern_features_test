@@ -8,6 +8,9 @@
   &:focus {
     outline: none;
   }
+  @media (max-width: 37.5em) {
+    width: 25rem;
+  }
 }
 .select-wrapper {
   display: flex;

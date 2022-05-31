@@ -1,6 +1,9 @@
 .nav {
   display: flex;
   align-items: center;
+  @media (max-width: 37.5em) {
+    display: none;
+  }
 
   // :first-child {
   //   margin-left: 5rem;

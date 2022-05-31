@@ -1,6 +1,9 @@
 .nav-auth {
   display: flex;
   align-items: center;
+  @media (max-width: 37.5em) {
+    display: none;
+  }
   a {
     padding: 0.8rem;
     margin: 0 0.8rem;
