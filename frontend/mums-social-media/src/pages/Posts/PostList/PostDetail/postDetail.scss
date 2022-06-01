@@ -11,6 +11,11 @@
     color: white;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 37.5em) {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
 
     &__content {
       display: flex;
@@ -20,6 +25,9 @@
       height: 100%;
       align-items: center;
       padding: 0.8rem;
+      @media (max-width: 37.5em) {
+        width: 90%;
+      }
 
       &__image-container {
         width: 100%;
@@ -156,6 +164,9 @@
       flex-direction: column;
       align-items: center;
       margin-right: 5rem;
+      @media (max-width: 37.5em) {
+        width: 80%;
+      }
       //padding: 2rem;
       &__form {
         width: 100%;
