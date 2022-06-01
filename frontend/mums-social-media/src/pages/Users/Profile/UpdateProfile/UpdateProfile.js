@@ -48,7 +48,7 @@ const UpdateProfile = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="update-profile__container__form"
         >
-          <h1>Update your Profile</h1>
+          <h1>Profil bearbeiten</h1>
           <div className="update-profile__container__form__text__container">
             <label>Name</label>
             <input
@@ -83,7 +83,7 @@ const UpdateProfile = () => {
             className="update-profile__container__form__button"
             type="submit"
           >
-            Update Profile
+            Bestätigen
           </button>
         </form>
       </div>

@@ -8,6 +8,7 @@ import "./createPost.scss";
 import SelectDropdown from "../../../components/FormComponents/SelectDropdown/Select";
 import Dropzone from "../../../components/FormComponents/Dropzone/Dropzone";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -76,9 +77,9 @@ const CreatePost = () => {
           className="create-post__container__form"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h1>Create a post</h1>
+          <h1>Post hinzufügen</h1>
           <div className="create-post__container__form__text__container">
-            <label>title</label>
+            <label>Posttitel</label>
             <input
               name="title"
               ref={register}
@@ -86,7 +87,7 @@ const CreatePost = () => {
                 required: "Please enter a title.",
               })}
               type="text"
-              placeholder="Enter a title"
+              placeholder="Titel eingeben"
             />
           </div>
           {errors.title && (
@@ -99,19 +100,19 @@ const CreatePost = () => {
           {/* //---------------------------------------------------------------- */}
           <SelectDropdown
             name={"categories"}
-            label={"Category"}
+            label={"Kategorie"}
             control={control}
             values={allCategories}
           />
           <div className="create-post__container__form__textarea__container">
-            <label>description</label>
+            <label>Beschreibung</label>
             <textarea
               name="description"
               ref={register}
               {...register("description", {
                 required: "Please enter your post description.",
               })}
-              placeholder="Write a description"
+              placeholder="Beschreibung eingeben"
             />
           </div>
           {errors.description && (
@@ -130,7 +131,7 @@ const CreatePost = () => {
                 <Dropzone
                   onChange={(files) => field.onChange(files?.[0])}
                   name="file alt text"
-                  label="File Upload"
+                  label="Bild hochladen"
                   files={field.value ? [field.value] : []}
                 />
               );
@@ -138,11 +139,11 @@ const CreatePost = () => {
           />
           {loading ? (
             <button disabled className="create-post__button">
-              Loading...
+              <Spinner />
             </button>
           ) : (
             <button type="submit" className="create-post__button">
-              Create Post
+              Post bestätigen
             </button>
           )}
           {appError || serverError ? (

@@ -66,7 +66,7 @@ const PostCard = ({ post, profilePicture, comments }) => {
             to={`/posts/${post?._id}`}
             className="post-list__card__description__link__text"
           >
-            Read More
+            Mehr lesen
           </Link>
           <HiOutlineArrowRight className="post-list__card__description__link__icon" />
         </div>

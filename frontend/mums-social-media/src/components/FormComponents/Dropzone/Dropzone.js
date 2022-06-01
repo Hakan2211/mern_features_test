@@ -63,7 +63,7 @@ const Dropzone = (props) => {
         <div className={"dropzone__input" + (isDragActive ? " active " : " ")}>
           <MdFileUpload className="dropzone__input__icon" />
           <p className="dropzone__input__text">
-            Upload an image with file size smaller than 3MB
+            Bild kleiner als 5MB hochladen
           </p>
 
           {!!files?.length && (

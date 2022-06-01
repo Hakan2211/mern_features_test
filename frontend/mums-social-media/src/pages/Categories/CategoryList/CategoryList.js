@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   fetchCategoriesAction,
   deleteCategoryAction,
@@ -41,7 +41,7 @@ const CategoryList = () => {
     <div className="category">
       <Link className="category__cta__add" to="/add-category">
         <MdAddCircle className="category__cta__add__icon" />
-        <span className="category__cta__add__text">Add Category</span>
+        <span className="category__cta__add__text">Kategorie hinzufügen</span>
       </Link>
       {loading ? (
         <Spinner />
@@ -50,7 +50,9 @@ const CategoryList = () => {
           {serverError.message} - {appError}
         </h2>
       ) : categoryList?.length <= 0 ? (
-        <h2>No category was found</h2>
+        <h2 className="category__title-not-found">
+          Noch keine Kategorie vorhanden
+        </h2>
       ) : (
         <div className="category-list__container">
           {categoryList?.map((category) => (

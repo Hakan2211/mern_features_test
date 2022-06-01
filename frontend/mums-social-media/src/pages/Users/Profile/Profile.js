@@ -114,7 +114,7 @@ const Profile = (props) => {
                           <IoCheckmarkCircle />
                         </div>
                         <div className="userprofile__container__header__info__verification__info__container__verified__text-verified">
-                          Verified
+                          Verifiziert
                         </div>
                       </div>
                     ) : (
@@ -123,7 +123,7 @@ const Profile = (props) => {
                           <IoCloseCircle />
                         </div>
                         <div className="userprofile__container__header__info__verification__info__container__unverified__text-unverified">
-                          Unverified
+                          Unverifiziert
                         </div>
                       </div>
                     )}
@@ -134,7 +134,7 @@ const Profile = (props) => {
                         className="userprofile__container__header__info__verification__button"
                         onClick={() => dispatch(accountVerificationSendToken())}
                       >
-                        Verify your Account
+                        Verifiziere dein Account
                       </button>
                     </div>
                   ) : null}
@@ -144,7 +144,7 @@ const Profile = (props) => {
                     {profile?.name}
                   </div>
                   <div className="userprofile__container__header__info__data__joined">
-                    Joined since: <DateFormatter date={profile?.createdAt} />
+                    Angemeldet seit: <DateFormatter date={profile?.createdAt} />
                   </div>
                 </div>
                 <div className="userprofile__container__header__info__follow-container">
@@ -185,7 +185,7 @@ const Profile = (props) => {
                       <IoMailOutline className="userprofile__container__header__info__message-container__icon" />
 
                       <div className="userprofile__container__header__info__message-container__button__text">
-                        Send Message
+                        Nachricht senden
                       </div>
                     </div>
                   </div>
@@ -197,7 +197,7 @@ const Profile = (props) => {
                       <div className="userprofile__container__header__info__message-container__icon">
                         <RiLockPasswordLine />
                       </div>
-                      Update Password
+                      Passwort updaten
                     </div>
                   </Link>
                 ) : null}
@@ -208,10 +208,10 @@ const Profile = (props) => {
         <div className="userprofile__container__posts">
           <h1 className="userprofile__container__posts__title">
             {profile?.posts.length === 1
-              ? "My Gallery"
+              ? "Meine Gallerie"
               : profile?.posts.length === 0
-              ? "No Post was found"
-              : "My Gallery"}
+              ? "Keine Posts gefunden"
+              : "Meine Gallery"}
           </h1>
           {isLoginUser ? (
             <Link
@@ -219,7 +219,7 @@ const Profile = (props) => {
               to="/create-post"
             >
               <MdAddCircle className="userprofile__container__posts__button__icon" />
-              <span className="post-list__cta__add__text">Add Post</span>
+              <span className="post-list__cta__add__text">Post hinzufügen</span>
             </Link>
           ) : null}
           <div className="userprofile__container__posts__container">

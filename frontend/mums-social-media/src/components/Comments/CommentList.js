@@ -19,7 +19,9 @@ const CommentList = ({ comments }) => {
 
       <div className="comment__list__container">
         {comments?.length <= 0 ? (
-          <h1 className="comment__list__container__no-comments">No Comments</h1>
+          <h1 className="comment__list__container__no-comments">
+            Noch keine Kommentare
+          </h1>
         ) : (
           comments?.map((comment) => (
             <div className="comment__list__container__item" key={comment?._id}>

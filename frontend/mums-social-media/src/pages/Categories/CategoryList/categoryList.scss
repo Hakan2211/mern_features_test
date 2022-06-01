@@ -8,12 +8,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
-    width: 20rem;
+
+    width: 30rem;
     border: 0.1rem solid #ebe1c1;
     border-radius: 1rem;
     margin: 2rem 0 0 2rem;
     transition: all 0.3s ease-in-out;
+    white-space: nowrap;
+    font-size: 2rem;
     &:hover {
       background-color: #55778b;
     }
@@ -21,6 +23,14 @@
     &__icon {
       margin-right: 1rem;
     }
+  }
+  &__title-not-found {
+    color: #ebe1c1;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
   }
 }
 

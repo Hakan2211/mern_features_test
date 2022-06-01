@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createCategoryAction } from "../../../redux/slices/categories/categoriesSlices";
 import { useNavigate } from "react-router-dom";
 import Dropzone from "../../../components/FormComponents/Dropzone/Dropzone";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const AddCategory = () => {
   const navigate = useNavigate();
@@ -24,7 +25,6 @@ const AddCategory = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("submit", data);
     dispatch(createCategoryAction(data));
   };
   return (
@@ -34,9 +34,9 @@ const AddCategory = () => {
           className="add-category__container__form"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h1>Add Category</h1>
+          <h1>Kategorie hinzufügen</h1>
           <div className="add-category__container__form__text__container">
-            <label>Category Title</label>
+            <label>Kategorietitel</label>
             <input
               name="title"
               ref={register}
@@ -63,7 +63,7 @@ const AddCategory = () => {
                 <Dropzone
                   onChange={(files) => field.onChange(files?.[0])}
                   name="file alt text"
-                  label="File Upload"
+                  label="Bild hochladen"
                   files={field.value ? [field.value] : []}
                 />
               );
@@ -71,10 +71,12 @@ const AddCategory = () => {
           />
           {loading ? (
             <button disabled className="add-category__button">
-              Loading...
+              <Spinner />
             </button>
           ) : (
-            <button className="add-category__button">Add Category</button>
+            <button className="add-category__button">
+              Kategorie bestätigen
+            </button>
           )}
         </form>
       </div>

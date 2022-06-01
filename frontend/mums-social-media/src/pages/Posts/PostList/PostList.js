@@ -5,6 +5,7 @@ import { fetchPostsAction } from "../../../redux/slices/posts/postSlices";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PostCard from "./PostCard/PostCard";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const PostList = () => {
   const dispatch = useDispatch();
@@ -19,12 +20,14 @@ const PostList = () => {
     <div className="post-list">
       <Link className="post-list__cta__add" to="/create-post">
         <MdAddCircle className="post-list__cta__add__icon" />
-        <span className="post-list__cta__add__text">Add Post</span>
+        <span className="post-list__cta__add__text">Post hinzufügen</span>
       </Link>
-      {appError || serverError ? (
+      {loading ? (
+        <Spinner />
+      ) : appError || serverError ? (
         <h1>Error</h1>
       ) : postLists?.length <= 0 ? (
-        <h1>No post found</h1>
+        <h1 className="post-list__title-not-found">Keine Posts gefunden</h1>
       ) : (
         <div className="post-list__container">
           {postLists?.map((post) => (

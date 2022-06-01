@@ -39,7 +39,7 @@ const SelectDropdown = ({
             return (
               <Select
                 options={options}
-                placeholder={"Select a Category"}
+                placeholder={"Kategorie auswählen"}
                 // onChange={() => onChange(options?.map((option) => option.value))}
                 onChange={onChange}
                 onBlur={onBlur}

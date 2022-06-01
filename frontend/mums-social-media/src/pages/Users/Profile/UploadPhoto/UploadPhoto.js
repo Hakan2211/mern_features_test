@@ -32,7 +32,9 @@ const UploadPhoto = () => {
           className="upload-photo__container__form"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h1 className="upload-photo__container__form__title">UploadPhoto</h1>
+          <h1 className="upload-photo__container__form__title">
+            Profilbild hochladen
+          </h1>
           <Controller
             name="image"
             control={control}
@@ -41,7 +43,7 @@ const UploadPhoto = () => {
                 <Dropzone
                   onChange={(files) => field.onChange(files?.[0])}
                   name="file alt text"
-                  label="File Upload"
+                  label="Bild hochladen"
                   files={field.value ? [field.value] : []}
                 />
               );
@@ -51,7 +53,7 @@ const UploadPhoto = () => {
             className="upload-photo__container__form__button"
             type="submit"
           >
-            Submit
+            Bestätigen
           </button>
         </form>
       </div>

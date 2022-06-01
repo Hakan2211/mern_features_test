@@ -1,9 +1,9 @@
 import React from "react";
 import { css } from "@emotion/react";
-import RiseLoader from "react-spinners/CircleLoader";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Spinner = () => {
-  return <RiseLoader color="red" loading={true} css={override} />;
+  return <MoonLoader size={50} color="#ebe1c1" loading={true} css={override} />;
 };
 
 const override = css`

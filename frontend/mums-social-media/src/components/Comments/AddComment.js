@@ -29,9 +29,11 @@ const AddComment = ({ postId }) => {
         className="add__comment__container__form"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="add__comment__container__form__title">Add Comment</h1>
+        <h1 className="add__comment__container__form__title">
+          Kommentar hinzufügen
+        </h1>
         <div className="add__comment__container__form__text-container">
-          <label>Comment</label>
+          <label>Kommentar</label>
           <textarea
             name="description"
             ref={register}
@@ -46,7 +48,7 @@ const AddComment = ({ postId }) => {
           <span className="error-required-field">This field is required.</span>
         )}
         <button type="submit" className="add__comment__container__form__button">
-          Send Comment
+          Kommentar senden
         </button>
       </form>
     </div>
