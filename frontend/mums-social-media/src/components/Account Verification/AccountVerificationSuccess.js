@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { verifyAccountAction } from "../../redux/slices/accountVerification/accountVerificationSlices";
+import "./accountVerficationSuccess.scss";
 
 const AccountVerificationSuccess = () => {
   const { id } = useParams();
@@ -28,7 +29,15 @@ const AccountVerificationSuccess = () => {
     }, 2000);
   }
 
-  return <div>AccountVerificationSuccess</div>;
+  return (
+    <div className="verificationSuccess">
+      <div className="verificationSuccess__container">
+        <div className="verificationSuccess__container__text">
+          Ihr Account wird verifiziert. Bitte warten...
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AccountVerificationSuccess;

@@ -7,7 +7,7 @@ import { HiOutlineArrowRight } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toggleLikePostAction } from "../../../../redux/slices/posts/postSlices";
-import DateFormatter from "../../../../utils/DateFormatter";
+import DateFormatter from "../../../../components/DateFormatter/DateFormatter";
 
 const PostCard = ({ post, profilePicture, comments }) => {
   const dispatch = useDispatch();

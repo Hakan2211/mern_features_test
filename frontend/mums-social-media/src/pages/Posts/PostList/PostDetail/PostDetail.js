@@ -6,10 +6,11 @@ import {
   fetchPostDetailAction,
 } from "../../../../redux/slices/posts/postSlices";
 import "./postDetail.scss";
-import DateFormatter from "../../../../utils/DateFormatter";
+
 import { MdOutlineModeEditOutline, MdDelete } from "react-icons/md";
 import AddComment from "../../../../components/Comments/AddComment";
 import CommentList from "../../../../components/Comments/CommentList";
+import DateFormatter from "../../../../components/DateFormatter/DateFormatter";
 
 const PostDetail = () => {
   const { id } = useParams();

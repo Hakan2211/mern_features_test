@@ -13,11 +13,12 @@ const ResetPasswordToken = () => {
   const { passwordResetToken } = user;
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       if (passwordResetToken) {
         navigate("/login");
       }
     }, 5000);
+    return () => clearTimeout(timer);
   }, [passwordResetToken]);
 
   const {

@@ -6,7 +6,7 @@ import {
   userProfileAction,
 } from "../../../redux/slices/users/usersSlices";
 import { useDispatch, useSelector } from "react-redux";
-import DateFormmater from "../../../utils/DateFormatter";
+
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AccountVerification from "../../../components/Account Verification/AccountVerification";
 import AccountVerificationSuccess from "../../../components/Account Verification/AccountVerificationSuccess";
@@ -26,6 +26,7 @@ import {
 } from "react-icons/ri";
 import PostCard from "../../Posts/PostList/PostCard/PostCard";
 import { accountVerificationSendToken } from "../../../redux/slices/accountVerification/accountVerificationSlices";
+import DateFormatter from "../../../components/DateFormatter/DateFormatter";
 
 const Profile = (props) => {
   const { id } = useParams();
@@ -143,7 +144,7 @@ const Profile = (props) => {
                     {profile?.name}
                   </div>
                   <div className="userprofile__container__header__info__data__joined">
-                    Joined since: <DateFormmater date={profile?.createdAt} />
+                    Joined since: <DateFormatter date={profile?.createdAt} />
                   </div>
                 </div>
                 <div className="userprofile__container__header__info__follow-container">

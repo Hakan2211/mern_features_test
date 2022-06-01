@@ -5,8 +5,7 @@ import {
   fetchCategoriesAction,
   deleteCategoryAction,
 } from "../../../redux/slices/categories/categoriesSlices";
-import DateFormatter from "../../../utils/DateFormatter";
-import Spinner from "../../../utils/Spinner";
+
 import "./categoryList.scss";
 import {
   MdOutlineModeEditOutline,
@@ -15,6 +14,8 @@ import {
 } from "react-icons/md";
 import "./categoryList.scss";
 import { fetchPostsAction } from "../../../redux/slices/posts/postSlices";
+import DateFormatter from "../../../components/DateFormatter/DateFormatter";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const CategoryList = () => {
   const navigate = useNavigate();

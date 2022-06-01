@@ -1,0 +1,19 @@
+.verificationSuccess {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+  grid-column: 1/-1;
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.2rem solid #ebe1c1;
+    border-radius: 1rem;
+    padding: 1rem;
+    &__text {
+      color: #fff;
+      font-size: 5rem;
+    }
+  }
+}
