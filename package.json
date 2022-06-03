@@ -8,6 +8,7 @@
     "postinstall-server": "cd packages/backend && npm install",
     "start": "node index.js"
   },
+  "private": true,
   "workspaces": {
     "packages": [
       "packages/*"
