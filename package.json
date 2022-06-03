@@ -7,5 +7,10 @@
     "postinstall-client": "cd packages/client && npm install && npm run build",
     "postinstall-server": "cd packages/backend && npm install",
     "start": "node index.js"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   }
 }
