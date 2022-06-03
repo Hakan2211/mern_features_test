@@ -27,6 +27,10 @@ dbConnect();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.get("/", (req, res) => {
+  res.json({ msg: "API for blog Application..." });
+});
+
 //If Rate Limiter behind Proxy - Set Proxy to 1
 app.set("trust proxy", 1);
 app.use(
