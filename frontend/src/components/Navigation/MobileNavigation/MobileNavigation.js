@@ -12,39 +12,35 @@ const MobileNavigation = () => {
 
   const HamburgerIcon = <CgMenu onClick={() => setOpen(!open)} />;
   const CloseIcon = <CgClose onClick={() => setOpen(!open)} />;
+
+  const navList = [
+    { name: "Home", link: "/" },
+    { name: "Gallerie", link: "/posts" },
+    { name: "Kategorie", link: "category-list" },
+  ];
+
   return (
     <div className="mobile-navigation">
       {open ? CloseIcon : HamburgerIcon}
       {open && (
-        <div className="mobile-navigation__container">
-          <div classname="mobile-navigation__container__nav-options">
-            <div>
-              <NavLink
-                className={({ isActive }) => (isActive ? "active" : "inactive")}
-                to="/"
-              >
-                Home
-              </NavLink>
-            </div>
-
-            <div>
-              <NavLink
-                className={({ isActive }) => (isActive ? "active" : "inactive")}
-                to="/posts"
-              >
-                Gallerie
-              </NavLink>
-            </div>
-
-            <div>
-              <NavLink
-                className={({ isActive }) => (isActive ? "active" : "inactive")}
-                to="/category-list"
-              >
-                Kategorie
-              </NavLink>
-            </div>
-          </div>
+        <nav className="mobile-navigation__container">
+          <ul className="mobile-navigation__list">
+            {navList.map((listItem) => (
+              <li className="mobile-navigation__list--item">
+                {" "}
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "mobile-navigation__list--item-active"
+                      : "mobile-navigation__list--item-inactive"
+                  }
+                  to={listItem.link}
+                >
+                  {listItem.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
           <div className="mobile-navigation__container__nav-auth">
             {!userAuth && !registered ? (
               <>
@@ -75,7 +71,7 @@ const MobileNavigation = () => {
               </NavLink>
             )}
           </div>
-        </div>
+        </nav>
       )}
     </div>
   );

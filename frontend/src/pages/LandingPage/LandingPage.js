@@ -33,10 +33,10 @@ const LandingPage = () => {
     tl.staggerFrom(
       [textTitle, textHeadFirst, textHeadSecond, textHeadThird],
       1,
-      { y: 600, ease: gsap.power3, delay: 0.8 },
+      { y: 600, opacity: 0, ease: gsap.power3, delay: 0.8 },
       0.15,
       "Start"
-    ).from(registerCTA, 1, { y: 300, opacity: 0, ease: gsap.power2 }, 1.2);
+    ).from(registerCTA, 1, { y: 600, opacity: 0, ease: gsap.power3 }, 1.0);
   }, []);
 
   return (
