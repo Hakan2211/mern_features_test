@@ -8,8 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
-import AccountVerification from "../../../components/Account Verification/AccountVerification";
-import AccountVerificationSuccess from "../../../components/Account Verification/AccountVerificationSuccess";
+
 import {
   IoCheckmarkCircle,
   IoCloseCircle,
@@ -48,13 +47,7 @@ const Profile = (props) => {
 
   const { likes } = post;
 
-  const account = useSelector((state) => state?.accountVerification);
-  const {
-    loading: verificationLoading,
-    appError: verificationAppError,
-    serverError: verificationServerError,
-    token,
-  } = account;
+  //const account = useSelector((state) => state?.accountVerification);
 
   const sendMailHandler = () => {
     navigate("/send-email", {

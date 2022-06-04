@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./landingPage.scss";
 import Video from "../../assets/video/background_landing.mp4";
 import FundaImage from "../../assets/img/LandingPage_Funda.png";
@@ -13,8 +13,9 @@ const LandingPage = () => {
   // }, []);
   let text = useRef(null);
   let image = useRef(null);
-  const tl = new gsap.timeline();
+
   useEffect(() => {
+    const tl = new gsap.timeline();
     const textTitle = text.children[0].children[0];
     const textHeadFirst = textTitle.nextSibling;
     const textHeadSecond = textHeadFirst.nextSibling;
@@ -36,7 +37,7 @@ const LandingPage = () => {
       0.15,
       "Start"
     ).from(registerCTA, 1, { y: 300, opacity: 0, ease: gsap.power2 }, 1.2);
-  }, [tl]);
+  }, []);
 
   return (
     <div className="landing">

@@ -16,7 +16,7 @@ const UpdatePost = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const category = useSelector((state) => state.categories);
-  const { categoryList, loading, appError, serverError } = category;
+  const { categoryList } = category;
 
   const allCategories = categoryList?.map((categoryItem) => {
     return categoryItem.title;

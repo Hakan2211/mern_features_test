@@ -9,7 +9,6 @@ import Header from "./components/Header/Header";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import Gallery from "./pages/Gallery/Gallery";
-import Footer from "./components/Footer/Footer";
 
 //------------------------------
 //Auth

@@ -1,6 +1,6 @@
-import React, { useEffect, useCallback } from "react";
+import React from "react";
 import "./dropzone.scss";
-import { useForm } from "react-hook-form";
+
 import { useDropzone } from "react-dropzone";
 import { MdFileUpload } from "react-icons/md";
 import "./dropzone.scss";

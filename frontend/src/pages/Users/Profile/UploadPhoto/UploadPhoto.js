@@ -11,7 +11,7 @@ const UploadPhoto = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.users);
-  const { profilePhoto, loading, appError, serverError } = user;
+  const { profilePhoto } = user;
 
   const { control, handleSubmit } = useForm();
 

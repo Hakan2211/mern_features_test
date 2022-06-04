@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { sendEmailAction } from "../../../../redux/slices/email/emailSlices";
-import './email.scss'
+import "./email.scss";
 
 const Email = () => {
   const dispatch = useDispatch();
@@ -11,13 +11,9 @@ const Email = () => {
   const navigate = useNavigate();
 
   const email = useSelector((state) => state.email);
-  const { isMailSent, loading, appError, serverError } = email;
+  const { isMailSent } = email;
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: { email: state.email, subject: "", message: "" },
   });
   const onSubmit = (data) => {

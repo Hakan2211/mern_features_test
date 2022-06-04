@@ -6,7 +6,7 @@ import "./login.scss";
 
 const LoginForm = ({ onSubmit }) => {
   const usersData = useSelector((state) => state.users);
-  const { appError, serverError, loading, userAuth } = usersData;
+  const { appError, serverError, loading } = usersData;
   const {
     register,
     handleSubmit,

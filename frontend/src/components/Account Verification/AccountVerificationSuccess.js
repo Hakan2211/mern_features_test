@@ -9,13 +9,7 @@ const AccountVerificationSuccess = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const accountVerification = useSelector((state) => state.accountVerification);
-  const {
-    loading,
-    appError,
-    serverError,
-    isVerified,
-    // verified: { _id },
-  } = accountVerification;
+  const { isVerified } = accountVerification;
   const verifyId = useSelector((state) => state.users.userAuth);
   const { _id } = verifyId;
 

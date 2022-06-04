@@ -14,13 +14,9 @@ const UpdateProfile = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.users);
-  const { userDetails, userIsUpdated, loading, appError, serverError } = user;
+  const { userDetails, userIsUpdated } = user;
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       name: userDetails?.name,
       email: userDetails?.email,
