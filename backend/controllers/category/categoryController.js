@@ -8,8 +8,8 @@ import cloudinaryUploadImg from "../../utils/cloudinary.js";
 // Create Category
 //----------------------------------------------------------------
 const createCategory = async (req, res) => {
-  const localPath = `public/images/category/${req.file.filename}`;
-  const imgUploaded = await cloudinaryUploadImg(localPath, "Category");
+  // const localPath = `${req.file.filename}`;
+  const imgUploaded = await cloudinaryUploadImg(req.file.filename, "Category");
 
   try {
     const category = await Category.create({
