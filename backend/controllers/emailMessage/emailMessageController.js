@@ -5,6 +5,7 @@ import { StatusCodes } from "http-status-codes";
 
 const sendEmail = async (req, res) => {
   const { to, subject, message } = req.body;
+  const user = req.user;
 
   const emailMessage = subject + "| |" + message;
 
@@ -19,7 +20,7 @@ const sendEmail = async (req, res) => {
       to,
       subject,
       text: message,
-      from: "hbilgic777@gmail.com",
+      from: req.user?.email,
     };
     await sgMail.send(msg);
 

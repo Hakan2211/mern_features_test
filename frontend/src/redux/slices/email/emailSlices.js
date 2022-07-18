@@ -28,6 +28,7 @@ export const sendEmailAction = createAsyncThunk(
           to: email?.email,
           subject: email?.subject,
           message: email?.message,
+          from: userAuth?.email,
         },
         config
       );
