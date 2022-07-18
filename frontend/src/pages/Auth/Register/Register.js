@@ -20,7 +20,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isRegistered) {
-      navigate("/profile");
+      navigate("/login");
     }
   }, [isRegistered]);
 

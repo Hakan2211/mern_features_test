@@ -42,7 +42,7 @@ const postImgResize = async (req, res, next) => {
   req.file.filename = `user-${Date.now()}-${req.file.originalname}`;
 
   const optimisedImage = await sharp(req.file.buffer)
-    .resize(500, 500)
+    .resize(900, 900)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
     // .toFile(path.join(`public/images/posts/${req.file.filename}`));
@@ -58,7 +58,7 @@ const categoryImgResize = async (req, res, next) => {
 
   req.file.filename = `user-${Date.now()}-${req.file.originalname}`;
   const optimisedImage = await sharp(req.file.buffer)
-    .resize(500, 500)
+    .resize(750, 750)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
     // .toFile(path.join(`public/images/category/${req.file.filename}`));
