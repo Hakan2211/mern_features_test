@@ -3,6 +3,7 @@ import sharp from "sharp";
 import path from "path";
 
 const multerStorage = multer.memoryStorage();
+// const multerStorage = multer.diskStorage();
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
@@ -46,15 +47,18 @@ const postImgResize = async (req, res, next) => {
 };
 
 const categoryImgResize = async (req, res, next) => {
+  console.log("check  in categoryImgREsize", req.file);
   if (!req.file) return next();
 
   req.file.filename = `user-${Date.now()}-${req.file.originalname}`;
-
-  await sharp(req.file.buffer)
+  const optimisedImage = await sharp(req.file.buffer)
     .resize(500, 500)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
-    .toFile(path.join(`public/images/category/${req.file.filename}`));
+    // .toFile(path.join(`public/images/category/${req.file.filename}`));
+    .toBuffer();
+
+  req.file.optimisedImage = optimisedImage;
   next();
 };
 

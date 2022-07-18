@@ -2,23 +2,48 @@ import Category from "../../models/category/Category.js";
 import validateMongoDbID from "../../utils/validateMongoDbID.js";
 import { StatusCodes } from "http-status-codes";
 import fs from "fs";
-import cloudinaryUploadImg from "../../utils/cloudinary.js";
+import cloudinaryUploadImg, { cloudinary } from "../../utils/cloudinary.js";
+import streamifier from "streamifier";
+
+const uploadFromBuffer = (buffer) => {
+  return new Promise((resolve, reject) => {
+    const cld_upload_stream = cloudinary.v2.uploader.upload_stream(
+      {
+        resource_type: "auto",
+        folder: "Category",
+      },
+      (error, result) => {
+        console.log("upload stream result", { error, result });
+        if (error) {
+          return reject(error);
+        }
+        return resolve(result);
+      }
+    );
+
+    streamifier.createReadStream(buffer).pipe(cld_upload_stream);
+  });
+};
 
 //----------------------------------------------------------------
 // Create Category
 //----------------------------------------------------------------
 const createCategory = async (req, res) => {
   // const localPath = `${req.file.filename}`;
-  const imgUploaded = await cloudinaryUploadImg(req.file.filename, "Category");
+  console.log("in create cat", req.file.optimisedImage, req.file);
+  // const imgUploaded = await cloudinaryUploadImg(req.file.filename, "Category");
+  const data = await uploadFromBuffer(req.file.optimisedImage);
+  console.log("data?", data);
 
   try {
     const category = await Category.create({
       user: req.user._id,
       title: req.body.title,
-      image: imgUploaded?.url,
+      // image: imgUploaded?.url,
+      image: data?.secure_url || "",
     });
     res.status(StatusCodes.CREATED).json(category);
-    fs.unlinkSync(localPath);
+    // fs.unlinkSync(localPath);
   } catch (error) {
     res.json(error);
   }
