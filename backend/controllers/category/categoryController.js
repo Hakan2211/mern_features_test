@@ -32,7 +32,7 @@ const createCategory = async (req, res) => {
   // const localPath = `${req.file.filename}`;
   console.log("in create cat", req.file.optimisedImage, req.file);
   // const imgUploaded = await cloudinaryUploadImg(req.file.filename, "Category");
-  const data = await uploadFromBuffer(req.file.optimisedImage);
+  const data = await cloudinaryUploadImg(req.file.optimisedImage, "Category");
   console.log("data?", data);
 
   try {

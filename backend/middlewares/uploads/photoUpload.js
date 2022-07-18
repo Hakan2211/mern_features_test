@@ -25,11 +25,14 @@ const profilePhotoResize = async (req, res, next) => {
 
   req.file.filename = `user-${Date.now()}-${req.file.originalname}`;
 
-  await sharp(req.file.buffer)
+  const optimisedImage = await sharp(req.file.buffer)
     .resize(250, 250)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
-    .toFile(path.join(`public/images/profile/${req.file.filename}`));
+    // .toFile(path.join(`public/images/profile/${req.file.filename}`));
+    .toBuffer();
+  req.file.optimisedImage = optimisedImage;
+
   next();
 };
 
@@ -38,11 +41,14 @@ const postImgResize = async (req, res, next) => {
 
   req.file.filename = `user-${Date.now()}-${req.file.originalname}`;
 
-  await sharp(req.file.buffer)
+  const optimisedImage = await sharp(req.file.buffer)
     .resize(500, 500)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
-    .toFile(path.join(`public/images/posts/${req.file.filename}`));
+    // .toFile(path.join(`public/images/posts/${req.file.filename}`));
+    .toBuffer();
+  req.file.optimisedImage = optimisedImage;
+
   next();
 };
 

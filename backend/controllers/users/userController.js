@@ -83,16 +83,17 @@ const profilePhotoUpload = async (req, res) => {
   const { _id } = req.user;
 
   const localPath = `public/images/profile/${req.file.filename}`;
-  const imgUploaded = await cloudinaryUploadImg(localPath, "Profile");
+  // const imgUploaded = await cloudinaryUploadImg(localPath, "Profile");
+  const data = await cloudinaryUploadImg(req.file.optimisedImage, "Profile");
   const foundUser = await User.findByIdAndUpdate(
     _id,
     {
-      profilePicture: imgUploaded?.url,
+      profilePicture: data?.secure_url || "",
     },
     { new: true }
   );
-  fs.unlinkSync(localPath);
-  res.json(imgUploaded);
+  // fs.unlinkSync(localPath);
+  res.json(data);
 };
 
 //----------------------------------------------------------------

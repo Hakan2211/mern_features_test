@@ -12,7 +12,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.users);
-  const { isRegistered } = user;
+  const { isRegistered, userAuth } = user;
 
   const onSubmit = async (data) => {
     dispatch(registerUserAction(data));
@@ -20,7 +20,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isRegistered) {
-      navigate("/profile");
+      navigate(`/profile/${userAuth?._id}`);
     }
   }, [isRegistered]);
 

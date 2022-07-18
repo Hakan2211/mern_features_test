@@ -28,18 +28,18 @@ const createPost = async (req, res) => {
     );
   }
   const localPath = `public/images/posts/${req.file.filename}`;
-  const imgUploaded = await cloudinaryUploadImg(localPath, "Post");
-
+  // const imgUploaded = await cloudinaryUploadImg(localPath, "Post");
   try {
+    const data = await cloudinaryUploadImg(req.file.optimisedImage, "Post");
     const post = await Post.create({
       ...req?.body,
       user: _id,
-      image: imgUploaded?.url,
+      image: data?.secure_url || "",
     });
     res.status(StatusCodes.CREATED).json(post);
 
     //Remove Uploaded Images
-    fs.unlinkSync(localPath);
+    // fs.unlinkSync(localPath);
   } catch (error) {
     res.json(error);
   }
