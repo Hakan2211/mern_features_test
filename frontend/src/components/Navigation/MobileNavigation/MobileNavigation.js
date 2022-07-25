@@ -15,7 +15,7 @@ const MobileNavigation = () => {
 
   const navList = [
     { name: "Home", link: "/" },
-    { name: "Gallerie", link: "/posts" },
+    { name: "Galerie", link: "/posts" },
     { name: "Kategorie", link: "category-list" },
   ];
 

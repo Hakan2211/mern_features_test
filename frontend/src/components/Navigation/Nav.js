@@ -17,7 +17,7 @@ const Nav = () => {
           className={({ isActive }) => (isActive ? "active" : "inactive")}
           to="/posts"
         >
-          Gallerie
+          Galerie
         </NavLink>
 
         <NavLink
